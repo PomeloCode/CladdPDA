@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: C">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/pdasdk_v3.35_20210115.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

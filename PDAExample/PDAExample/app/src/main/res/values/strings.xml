@@ -1,0 +1,76 @@
+<resources translatable="false" xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="str_please_waitting">please wait.&#8230;</string>
+    <string name="waiting">waiting</string>
+    <string name="str_loading" >loading.&#8230;</string>
+    <string name="str_busy">busy!</string>
+    <string name="str_success">success</string>
+    <string name="str_faild">faild</string>
+    <string name="str_configure">configure</string>
+    <string name="str_ok">OK</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_back">Back</string>
+    <string name="str_exit">Exit</string>
+
+    <!-- MenuMain -->
+    <string name="tv_MainMenu_Title">PDA Example</string>
+    <string name="btn_MainMenu_UHF">UHF</string>
+    <string name="btn_MainMenu_HF">HF</string>
+    <string name="btn_MainMenu_Psam">PSAM</string>
+    <string name="btn_MainMenu_SerialNumber">SerialNumber</string>
+    <string name="btn_MainMenu_Scan">Scanner</string>
+    <string name="btn_MainMenu_Version">Version</string>
+    <string name="btn_MainMenu_DLT">DLT</string>
+    <string name="btn_MainMenu_Exit">Exit</string>
+
+    <!-- UHF Menu -->
+    <string name="btn_UHFMenu_Title">UHF_DEMO</string>
+    <string name="btn_UHFMenu_Read">Read-Test</string>
+    <string name="btn_UHFMenu_Read_Matching">Read-Matching</string>
+    <string name="btn_UHFMenu_Write">Write-Test</string>
+    <string name="btn_UHFMenu_Lock">Lock-Test</string>
+    <string name="btn_UHFMenu_Configration">Configration</string>
+    <string name="btn_UHFMenu_Back">Back</string>
+
+    <!-- UHF Read -->
+    <string name="app_name">StockIT</string>
+    <string name="List_TagID">EPC</string>
+    <string name="List_ReadCount">Count</string>
+    <string name="Tag_Time">Time:0 S </string>
+    <string name="Tag_Count">Total:0</string>
+    <string name="Tag_ReadTotalCount">SP:0 T/S</string>
+    <string name="btn_read">Start</string>
+    <string name="btn_read_stop">Stop</string>
+    <string name="Clear_Tags">Clear</string>
+    <string name="btn_Back">Back</string>
+    <string name="tv_Read_Title">Read EPC</string>
+    <string name="uhf_please_stop">Please stop!</string>
+    <string name="uhf_low_power_info">Low battery, please charge!</string>
+    <string name="uhf_low_power_consumption">Low power consumption, whether the use of the main power supply?</string>
+    <string name="uhf_read_power_over">The main power supply is being used, UHF power should not exceed 25dBm!</string>
+    <string name="uhf_data_error">Data error!</string>
+    <string name="uhf_data_len_error">The length of AccessPassword must be eight!</string>
+    <string name="uhf_6b_not_support_match_mode">The 6B tag does not support match read!</string>
+
+    <!-- Configration -->
+    <string name="tv_Configration_BaseSpeed">BaseSpeed:</string>
+    <string name="tv_Configration_QValue">QValue:</string>
+    <string name="tv_Configration_Frequency">Frequency:</string>
+    <string name="tv_Configration_Power">Power:</string>
+    <string name="tv_Configration_Ant">ANT:</string>
+    <string name="tv_Configration_TagType">TagType:</string>
+    <string name="btn_Get">GET</string>
+    <string name="btn_Set">SET</string>
+    <string name="btn_ReadTime">ReadTime(ms):</string>
+    <string name="btn_StopTime">StopTime(ms): </string>
+    <string name="btn_Restore">RESTORE</string>
+    <string name="btn_CARRIER">CARRIER</string>
+    <string name="btn_UpdateBase">UpdateBase</string>
+
+    <string name="tv_title_Login">Logueo Operario</string>
+
+
+
+
+</resources>
