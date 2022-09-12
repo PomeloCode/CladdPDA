@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/drawable/popup.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/custom_action_bar.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/dlt_free_send.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/epclist_item.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/grid_item.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/item_main.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/scan_main.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/uhf_configration.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/uhf_dialog.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/uhf_main.xml" value="0.13489583333333333" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/uhf_read.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/PDAExample/PDAExample/app/src/main/res/layout/verdetalle.xml" value="0.25" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/drawable/button_blue.xml" value="0.1135" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/estado4.xml" value="0.2" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/finder.xml" value="0.2" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/finder_base.xml" value="0.25" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/finder_base_item.xml" value="0.2" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/finder_item.xml" value="0.2" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/grabarcontenedor.xml" value="0.14447463768115942" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/grabarpieza.xml" value="0.22" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/inventario.xml" value="0.22" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/pop_up_trackeo_item.xml" value="0.10104166666666667" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/pop_up_trackeo_main.xml" value="0.2" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/popup_error.xml" value="0.109375" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/popup_exito.xml" value="0.2" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/trackeo.xml" value="0.25" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/uhf_configration.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/verdetalle.xml" value="0.25" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/verdetallepieza.xml" value="0.1" />
+        <entry key="..\:/Users/lania/Desktop/cladd-pda-new/StockITCladd/app/src/main/res/layout/verificacion.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

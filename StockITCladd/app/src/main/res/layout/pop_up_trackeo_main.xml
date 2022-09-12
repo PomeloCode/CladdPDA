@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              style="@style/UHFTheme"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="2dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/PopUpTrackeo_TipoProd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="@string/PopUpTrackeo_TipoProd"/>
+
+        <TextView
+            android:id="@+id/PopUpTrackeo_Nserie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:text="@string/PopUpTrackeo_Nserie"/>
+        <TextView
+            android:id="@+id/PopUpTrackeo_Error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="@string/PopUpTrackeo_Error"/>
+
+        <TextView
+            android:id="@+id/PopUpTrackeo_Mensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:text="@string/PopUpTrackeo_Mensaje"/>
+        <Button
+            android:id="@+id/btn_PopUp_cerrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:textSize="24dp"
+            android:text="X"></Button>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#808080"/>
+
+    <ListView
+        android:id="@+id/lv_Main"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#808080"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.23"
+            android:text="@string/PopUpTrackeo_Asignados"/>
+        <TextView
+            android:id="@+id/PopUpTrackeo_Asignados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="@string/PopUpTrackeo_Start"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.23"
+            android:text="@string/PopUpTrackeo_Cargados"/>
+        <TextView
+            android:id="@+id/PopUpTrackeo_Cargados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="@string/PopUpTrackeo_Start"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.23"
+            android:text="@string/PopUpTrackeo_Verificados"/>
+        <TextView
+            android:id="@+id/PopUpTrackeo_Verificados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:text="@string/PopUpTrackeo_Start"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#808080"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+</LinearLayout>

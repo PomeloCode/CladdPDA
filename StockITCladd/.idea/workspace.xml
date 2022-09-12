@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8530d81e-27d5-4d43-bb1b-9ce2eedaa0b8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/4.8/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/4.8/taskHistory/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/4.8/taskHistory/taskHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/7.3.3/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.gradle/vcsWorkingDirs/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/caches/build_file_checksums.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__C.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__android_arch_core_common_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__android_arch_core_runtime_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__android_arch_lifecycle_common_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_annotations_28_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_compat_27_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_core_ui_27_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_core_utils_27_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_fragment_27_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_media_compat_27_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_android_support_support_v4_27_1_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_14_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_squareup_okio_okio_1_17_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/libraries/Gradle__org_jetbrains_annotations_15_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/modules/PDAExample.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/modules/app/PDAExample.app.androidTest.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/modules/app/PDAExample.app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/modules/app/PDAExample.app.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/modules/app/PDAExample.app.unitTest.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/PDAExample.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/libs/pdasdk_v3.35_20210115.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/ItemMainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/PublicData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/entities/api/BaseConfigApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/entities/api/ColorApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/entities/api/OperarioApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/entities/api/ProductoApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/services/ApiInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/services/DataBaseHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/uhf/ConfigActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/cladd/uhf/UHFBaseActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/java/com/util/BaseActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/arm64-v8a/libIAL.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/arm64-v8a/libSDL.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/arm64-v8a/libbarcodereader44.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/arm64-v8a/libcepri_dev.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/arm64-v8a/libpda.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libIAL.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libSDL.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libbarcodereader.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libbarcodereader43.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libbarcodereader44.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libcepri_dev.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/jniLibs/armeabi-v7a/libpda.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/a9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/b3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/b8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_blue.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_blue_press.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_green.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_green_press.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_invalid.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_orange.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_button_orange_press.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/bg_title.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/button_blue.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/button_green.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/button_orange.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/dlt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/hf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/left.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/message.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/psam.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/scan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/serialno.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/setting.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/uhf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/version.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/view_corners_rectangle_morelist.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/view_corners_rectangle_morelist_gray.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/view_rectangle_morelist.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/drawable/view_rectangle_morelist_gray.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/layout/custom_action_bar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/layout/epclist_item.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/layout/grid_item.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/layout/item_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/layout/uhf_configration.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/layout/uhf_dialog.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values-pl-rPL/arrays.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values-v11/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values-v14/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values-v22/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values-zh-rCN/arrays.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values/arrays.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/local.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PDAExample/PDAExample/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../libs/pdasdk_v3.35_20210115.jar" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[82013D0022010337]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="1ftVaxlVemGnzc9MR2Xln0l2n0y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="android-custom-viewC:/Users/lania/AppData/Local/Android/Sdk/sources/android-33/android/view/ViewGroup.java_SELECTED" value="ViewGroup" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Proyectos/Cladd/PDA-CLADD-STOCKIT/PDA" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lania\Desktop\cladd-pda-new\StockITCladd\app\src\main\java\com\cladd\entities\model" />
+      <recent name="C:\Users\lania\Desktop\cladd-pda-new\StockITCladd\app\src\main\res\layout" />
+      <recent name="C:\Users\lania\Desktop\cladd-pda-new\StockITCladd\app\src\main\java\com\cladd\premodulo" />
+      <recent name="C:\Users\lania\Desktop\cladd-pda-new\PDAExample\PDAExample\app\src\main\res\drawable" />
+      <recent name="C:\Users\lania\Desktop\cladd-pda-new\PDAExample\PDAExample\app\src\main\res\layout" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cladd.entities.model" />
+      <recent name="com.cladd.entities.api" />
+      <recent name="com.cladd.modulos" />
+      <recent name="com.cladd.uhf" />
+      <recent name="com.cladd.services" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="StockITCladd.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8530d81e-27d5-4d43-bb1b-9ce2eedaa0b8" name="Default Changelist" comment="" />
+      <created>1597037442775</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597037442775</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

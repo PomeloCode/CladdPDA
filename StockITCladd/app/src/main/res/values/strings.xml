@@ -1,0 +1,473 @@
+<resources  xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- CLADD -->
+    <string name="PUNTO">PU</string>
+    <string name="PLANO">PL</string>
+
+    <!-- DB -->
+    <string name="DB_DynamicConfig_Type_BaseConfig">BaseConfig</string>
+    <string name="DB_DynamicConfig_Type_PDAConfig">PDAConfig</string>
+    <string name="DB_DynamicConfig_Type_Modules">modules</string>
+
+    <string name="LeerTagContenedor">LeerTagContenedor</string>
+
+    <string name="DB_DynamicConfig_Name_baseband">baseband</string>
+    <string name="DB_DynamicConfig_Name_qValue">qValue</string>
+    <string name="DB_DynamicConfig_Name_session">session</string>
+    <string name="DB_DynamicConfig_Name_flag">flag</string>
+    <string name="DB_DynamicConfig_Name_antCount">antCount</string>
+    <string name="DB_DynamicConfig_Name_antPower">antPower</string>
+    <string name="DB_DynamicConfig_Name_frequency">frequency</string>
+    <string name="DB_DynamicConfig_Name_repeatTimeFilter">repeatTimeFilter</string>
+    <string name="DB_DynamicConfig_Name_rssiFilter">rssiFilter</string>
+    <string name="DB_DynamicConfig_Name_isOpen">isOpen</string>
+    <string name="DB_DynamicConfig_Name_timeAutoIdle">timeAutoIdle</string>
+    <string name="DB_DynamicConfig_Name_rfu">rfu</string>
+    <string name="DB_DynamicConfig_Name_tagFocus">tagFocus</string>
+    <string name="DB_DynamicConfig_Name_fastID">fastID</string>
+    <string name="DB_DynamicConfig_Name_rfu2">rfu2</string>
+    <string name="DB_DynamicConfig_Name_maxQ">maxQ</string>
+    <string name="DB_DynamicConfig_Name_minQ">minQ</string>
+    <string name="DB_DynamicConfig_Name_tmult">tmult</string>
+    <string name="DB_DynamicConfig_Name_DynamicStartQenable">DynamicStartQenable</string>
+    <string name="DB_DynamicConfig_Name_antenna">antenna</string>
+    <string name="DB_DynamicConfig_Name_numberOfRetries">numberOfRetries</string>
+    <string name="DB_DynamicConfig_Name_maxAntennaResistancetime">maxAntennaResistancetime</string>
+    <string name="DB_DynamicConfig_Name_waitingTimeAntSwitch">waitingTimeAntSwitch</string>
+    <string name="DB_DynamicConfig_Name_antennaSwitchingSequence">antennaSwitchingSequence</string>
+    <string name="DB_DynamicConfig_Name_antennaProtectionThreshold">antennaProtectionThreshold</string>
+    <string name="DB_DynamicConfig_Name_LBTMode">LBTMode</string>
+    <string name="DB_DynamicConfig_Name_RSSIMaxVal">RSSIMaxVal</string>
+
+    <!-- RFID -->
+    <string name="RFID_ErrorConexion">Error de conexion del modulo de RFID</string>
+    <string name="RFID_ErrorLectura">Error de lectura del modulo de RFID</string>
+    <string name="RFID_ErrorCambioPotencia">Error Cambiando la potencia el equipo podria tener problemas de distancia</string>
+    <string name="RFID_ErrorGrabacion">Error en la grabacion, Intente nuevamente</string>
+    <string name="RFID_AntPowerVerDetallePieza">AntPowerVerDetallePieza</string>
+    <string name="RFID_AntPowerBCtoRFRead">AntPowerBCtoRFRead</string>
+    <string name="RFID_AntPowerBCtoRFWrite">AntPowerBCtoRFWrite</string>
+    <string name="RFID_AntPowerFinderRead">AntPowerFinderRead</string>
+    <string name="RFID_AntPowerFinderSearch">AntPowerFinderSearch</string>
+    <string name="RFID_AntPowerTrackerRead">AntPowerTrackerRead</string>
+    <string name="RFID_AntPowerTrackerTrack">AntPowerTrackerTrack</string>
+    <string name="RFID_AntPowerVerificacionRead">AntPowerVerificacionRead</string>
+    <string name="RFID_AntPowerVerificacionTrack">AntPowerVerificacionTrack</string>
+    <string name="RFID_AntPowerEstado4Read">AntPowerEstado4Read</string>
+    <string name="RFID_AntPowerEstado4Track">AntPowerEstado4Track</string>
+    <string name="RFID_AntPowerWriteContainerRead">AntPowerWriteContainerRead</string>
+    <string name="RFID_VirginStartTag">E280</string>
+    <string name="RFID_BaseBandX1">1,</string>
+    <string name="RFID_BaseBandX2">2,</string>
+    <string name="RFID_BaseBandX3">3,</string>
+    <string name="RFID_BaseBandX4">4,</string>
+    <string name="RFID_BaseBandX5">5,</string>
+
+
+    <!-- BC -->
+
+    <string name="BC_ErrorConexion">Error del modulo de BC</string>
+    <string name="BC_ErrorLectura">Error de lectura de BC</string>
+
+
+
+    <!-- Generic -->
+
+    <string name="GENERICENDPOINT">http://mail.cladd.com.ar:8803/TestIntegrationStockIT/</string>
+    <string name="GENERICPOSITIVEBUTTON">OK</string>
+    <string name="GENERICREQUEST">:REQUEST</string>
+    <string name="GENERICPUNTOS">:</string>
+    <string name="GENERICBARRA">/</string>
+    <string name="GENERICGUION">-</string>
+    <string name="GENERICCORRECTO">Correcto</string>
+    <string name="GENERICERROR">Error</string>
+    <string name="GENERICEPC">EPC</string>
+    <string name="GENERICSI">SI</string>
+    <string name="GENERICNO">NO</string>
+
+
+    <string name="waiting">waiting</string>
+    <string name="str_busy">Espere!</string>
+    <string name="str_success">Exito</string>
+    <string name="str_faild">fallo</string>
+    <string name="str_ok">OK</string>
+    <string name="str_cancel">Cancelar</string>
+    <string name="str_confirm">Confirmar</string>
+    <string name="str_back">Atras</string>
+    <string name="str_exit">Salir</string>
+    <string name="str_br">\n</string>
+    <string name="str_tab">\t</string>
+    <string name="str_signoPregunta">\?</string>
+    <string name="str_PDA">PDA</string>
+
+
+
+    <!-- Operario -->
+
+    <string name="OPERARIOLOG">_OperarioLog</string>
+    <string name="OPERARIODESC">_OperarioDesc</string>
+    <string name="OPERARIOPLANTA">_OperarioPlanta</string>
+    <string name="OPERARIOUSOTRACKER">_OperarioUsoTracker</string>
+    <string name="OPERARIODEFAULTLOG">ADMIN</string>
+    <string name="OPERARIODEFAULTDESC">ADMINUSER</string>
+    <string name="OPERARIODEFAULTPLANTA">TEST</string>
+    <string name="OPERARIODEFAULTUSOTRACKER">true</string>
+    <string name="DESCRIPCION">descripcion</string>
+    <string name="PLANTA">planta</string>
+    <string name="HABILITAUSOTRACKER">habilitaUsoTracker</string>
+
+    <!-- UHF Read -->
+
+    <string name="List_TagID">EPC</string>
+    <string name="btn_UHFMenu_Configration">Count</string>
+    <string name="List_ReadCount">Count</string>
+    <string name="btn_read_stop">Stop</string>
+    <string name="Clear_Tags">Clear</string>
+    <string name="uhf_please_stop">Please stop!</string>
+    <string name="uhf_low_power_info">Low battery, please charge!</string>
+    <string name="uhf_read_power_over">The main power supply is being used, UHF power should not exceed 25dBm!</string>
+
+
+    <!-- Modulos -->
+
+    <string name="Config">Config</string>
+    <string name="MasterConfig">MasterConfig</string>
+    <string name="VerDetallePieza">VerDetallePieza</string>
+    <string name="VerDetalleContenedor">VerDetalleContenedor</string>
+    <string name="GrabarPieza">GrabarPieza</string>
+    <string name="GrabarContenedor">GrabarContenedor</string>
+    <string name="Finder">Finder</string>
+    <string name="Trackeo">Trackeo</string>
+    <string name="Verificacion">Verificacion</string>
+    <string name="Estado4">Estado4</string>
+    <string name="Inventario">Inventario</string>
+
+    <!-- Generic APIS -->
+    <string name="API_ENDPOINT">endpoint</string>
+    <string name="API_FECHA">fecha</string>
+    <string name="API_DATASOURCE">dataSource</string>
+    <string name="API_RESPONSESTATE">responseState</string>
+    <string name="API_RESPONSESTATE_ISERROR">isError</string>
+    <string name="API_RESPONSESTATE_OBSERVACION">observacion</string>
+    <string name="API_RESPONSESTATE_ERRORMESSAGE">errorMessage</string>
+    <string name="API_CONTENTTYPE">application/json; charset=utf-8</string>
+
+    <!-- MenuMain -->
+    <string name="app_name">StockITCladd</string>
+    <string name="StockITBusinessID">01</string>
+    <string name="tv_MainMenu_Title">StockIT</string>
+    <string name="grid_itemImage">itemImage</string>
+    <string name="grid_itemText">itemText</string>
+    <string name="grid_itemActivity">itemActivity</string>
+
+    <!-- Configration -->
+    <string name="tv_Configration_BaseSpeed">BaseSpeed:</string>
+    <string name="tv_Configration_QValue">QValue:</string>
+    <string name="tv_Configration_Frequency">Frequency:</string>
+    <string name="tv_Configration_Power">Power:</string>
+    <string name="tv_Configration_Ant">ANT:</string>
+    <string name="tv_Configration_TagType">TagType:</string>
+    <string name="btn_Get">GET</string>
+    <string name="btn_Set">SET</string>
+    <string name="btn_ReadTime">ReadTime(ms):</string>
+    <string name="btn_StopTime">StopTime(ms): </string>
+    <string name="btn_Restore">RESTORE</string>
+    <string name="btn_CARRIER">CARRIER</string>
+
+    <string name="tv_title_Login">Logueo Operario</string>
+    <string name="tv_UsuarioLogueado">Usuario:</string>
+
+    <!-- VerDetallePieza -->
+
+    <string name="tv_VerDetallePieza_Title">Ver Detalle</string>
+    <string name="tv_VerDetallePieza_Tipo"> Tipo</string>
+    <string name="tv_VerDetallePieza_Pieza"> Pieza</string>
+    <string name="tv_VerDetallePieza_DepSec"> Dep/Sec</string>
+    <string name="tv_VerDetallePieza_Fecha"> Fecha</string>
+    <string name="tv_VerDetallePieza_Partida"> Partida</string>
+    <string name="tv_VerDetallePieza_Articulo"> Articulo</string>
+    <string name="tv_VerDetallePieza_Color"> Color</string>
+    <string name="tv_VerDetallePieza_Cliente"> Cliente</string>
+    <string name="tv_VerDetallePieza_Comprobante"> Comp.</string>
+    <string name="tv_VerDetallePieza_FechaComp">Fecha Comp.</string>
+    <string name="tv_VerDetallePieza_Tipo_Manual">Tipo </string>
+    <string name="tv_VerDetallePieza_NSerie_Manual">Pieza </string>
+    <string name="rb_VerDetallePieza_BC">Codigo de barra </string>
+    <string name="rb_VerDetallePieza_RF">Antena </string>
+    <string name="btn_VerDetallePieza">Leer</string>
+
+    <string name="error_VerDetallePieza_NSerie_Manual_Vacio">Error Complete el campo pieza</string>
+    <string name="error_VerDetallePieza_ApiDevolvioRaro"> Error al obtener la pieza.</string>
+
+    <string name="API_VerDetallePieza_Nombre">ConsultaStock</string>
+    <string name="API_VerDetallePieza_Req_ID">ID</string>
+    <string name="API_VerDetallePieza_Req_TipoProd">tipoProd</string>
+    <string name="API_VerDetallePieza_Req_NSerie">nSerie</string>
+
+    <!-- GrabarPieza -->
+
+    <string name="tv_GrabarPieza_Title">Grabar Pieza</string>
+    <string name="tv_GrabarPieza_Tipo">Tipo</string>
+    <string name="tv_GrabarPieza_Sector">Sector</string>
+    <string name="tv_GrabarPieza_TID">Antena</string>
+    <string name="tv_GrabarPieza_Pieza">Pieza</string>
+    <string name="btn_GrabarPieza_Grabar">Grabar </string>
+    <string name="btn_GrabarPieza_GrabarAMano">Grabar A Mano</string>
+    <string name="rb_GrabarPieza_Escanear">Escanear Codigo</string>
+    <string name="rb_GrabarPieza_Escribir">Escribir Codigo</string>
+    <string name="rb_GrabarPieza_Grabar">Grabar</string>
+    <string name="rb_GrabarPieza_GrabarUbicar">Grabar y Ubicar</string>
+
+    <string name="metodo_GrabarPieza_GrabarTag">GrabarTag</string>
+
+    <string name="error_GrabarPieza_CodigoErroneo"> Error el codigo no es correcto.</string>
+
+    <string name="API_GrabarPieza_Nombre">GrabarEtiquetaStockInicial</string>
+    <string name="API_GrabarPieza_NombreSinUbicar">GrabarEtiquetaSinUbicarStockInicial</string>
+    <string name="API_GrabarPieza_Req_Operario">operario</string>
+    <string name="API_GrabarPieza_Req_Deposito">deposito</string>
+    <string name="API_GrabarPieza_Req_TipoProd">TipoProd</string>
+    <string name="API_GrabarPieza_Req_NSerie">NSerie</string>
+    <string name="API_GrabarPieza_Req_EscribeNSerie">escribeNSerie</string>
+
+    <!-- GrabarContenedor -->
+
+    <string name="tv_GrabarContenedor_Title">Grabar Contenedor</string>
+    <string name="tv_GrabarContenedor_Antenna">Antena</string>
+    <string name="tv_GrabarContenedor_Contenedor">Contenedor</string>
+    <string name="btn_GrabarContenedor_Grabar">Grabar</string>
+
+    <string name="error_GrabarContenedor_Contenedor_Vacio"> Error el codigo no es correcto.</string>
+    <string name="error_GrabarContenedor_ApiDevolvioRaro"> Error al obtener la pieza.</string>
+
+    <string name="API_GrabarContenedor_Nombre">GrabarEtiquetaContenedor</string>
+
+    <!-- FinderBase -->
+
+
+    <string name="tv_FinderBase_Title"> Finder Base </string>
+    <string name="tv_FinderBase_Asignados">Asig.</string>
+    <string name="btn_FinderBase_Leer">Leer</string>
+
+
+    <string name="tv_FinderBase_BuscarPartida">Partida</string>
+    <string name="tv_FinderBase_BuscarContenedor">Contenedor</string>
+
+    <string name="tv_FinderBase_Start">0</string>
+    <string name="tv_FinderBase_ItemDeposito">Deposito</string>
+    <string name="tv_FinderBase_ItemCantidadPiezas">0</string>
+
+    <string name="error_FinderBase_ApiDevolvioRaro"> Error al obtener la pieza.</string>
+
+    <string name="API_FinderBase_Nombre">GrabarEtiquetaContenedor</string>
+    <string name="API_FinderBase_Req_ID">ID</string>
+    <string name="API_FinderBase_Req_Criterio">criterio</string>
+    <string name="API_FinderBase_Res_Deposito">deposito</string>
+
+    <!-- Finder -->
+
+    <string name="tv_Finder_Title">Finder</string>
+    <string name="tv_Finder_Sector">Sector</string>
+    <string name="btn_Finder_Leer">Leer</string>
+
+    <string name="tv_Finder_Asignados">Asig.</string>
+    <string name="tv_Finder_Encontrados">Leidos</string>
+    <string name="tv_Finder_Start">0</string>
+
+    <!-- Trackeo -->
+    <string name="tv_Trackeo_Title">Trackeo</string>
+
+    <string name="rb_Trackeo_Carga">Carga</string>
+    <string name="rb_Trackeo_Descarga"><strike>Descarga</strike></string>
+    <string name="rb_Trackeo_Devolucion"><strike>Devolucion</strike></string>
+    <string name="tv_Trackeo_Nro">Nro</string>
+    <string name="tv_Trackeo_Asignados">Asig:</string>
+    <string name="tv_Trackeo_Cargados">Carg:</string>
+    <string name="tv_Trackeo_Verificadas">Veri:</string>
+    <string name="tv_Trackeo_Leidos">Leido:</string>
+    
+    <string name="btn_Trackeo_LeerContenedor">Leer Contenedor</string>
+    <string name="btn_Trackeo_Trackear">Trackear</string>
+    <string name="btn_Trackeo_Carga">Cargar</string>
+
+    <string name="tv_Trackeo_Start">0</string>
+    <string name="tv_Trackeo_TrackeoCount">TrackeoCount</string>
+
+    <string name="error_Trackeo_ApiNotFound"> Error la etiqueta no tiene informacion asociada.</string>
+
+    <string name="API_Trackeo_Nombre">getContainer</string>
+    <string name="API_Trackeo_TrackearNombre">Trackear</string>
+
+    <string name="API_Trackeo_Req_ID">ID</string>
+    <string name="API_Trackeo_Req_Criterio">criterio</string>
+
+    <string name="API_Trackeo_Res_ContenedorID">containerID</string>
+    <string name="API_Trackeo_Res_Asignados">asignados</string>
+    <string name="API_Trackeo_Res_Cargados">cargados</string>
+    <string name="API_Trackeo_Res_Verificados">verificados</string>
+    <string name="API_Trackeo_Res_Piezas">piezas</string>
+
+    <string name="API_Trackeo_Req_TrackearContainerID">containerID</string>
+    <string name="API_Trackeo_Req_TrackearOperacion">operacion</string>
+    <string name="API_Trackeo_Req_TrackearPiezas">piezas</string>
+    <string name="API_Trackeo_Req_TrackearCodigo">codigo</string>
+    <string name="API_Trackeo_Req_TrackearCodigoHexa">codigoHexa</string>
+    <string name="API_Trackeo_Req_TrackearOperario">operario</string>
+
+    <string name="API_Trackeo_Res_TrackearPiezas">piezas</string>
+    <string name="API_Trackeo_Res_TrackearItems">items</string>
+    <string name="API_Trackeo_Res_TrackearAsignados">asignadas</string>
+    <string name="API_Trackeo_Res_TrackearCargados">cargadas</string>
+    <string name="API_Trackeo_Res_TrackearVerificados">verificadas</string>
+
+
+    <!-- PopUp Error -->
+    <string name="tv_PopUpError_TitleNoAsignada"> Error Pieza No Asignada</string>
+    <string name="tv_PopUpError_TitleNoTrackeada"> Error Pieza No Trackeada</string>
+    <string name="tv_PopUpError_TipoError">tipoError</string>
+
+    <string name="tv_PopUpError_Tipo"> Tipo</string>
+    <string name="tv_PopUpError_Pieza"> Pieza</string>
+    <string name="tv_PopUpError_pieza"> pieza</string>
+    <string name="tv_PopUpError_DepSec"> Dep/Sec</string>
+    <string name="tv_PopUpError_Fecha"> Fecha</string>
+    <string name="tv_PopUpError_Partida"> Partida</string>
+    <string name="tv_PopUpError_Articulo"> Articulo</string>
+    <string name="tv_PopUpError_Color"> Color</string>
+    <string name="btn_PopUpError_Cerrar"> Cerrar</string>
+
+    <!-- PopUp Exito -->
+    <string name="tv_PopUpexito_Title"> Pieza Grabada Con Exito </string>
+    <string name="tv_PopUpexito_Tipo"> Tipo </string>
+    <string name="tv_PopUpexito_Pieza"> Pieza </string>
+    <string name="tv_PopUpexito_DepSec"> Dep/Sec </string>
+    <string name="tv_PopUpexito_Fecha"> Fecha </string>
+    <string name="tv_PopUpexito_Partida"> Partida </string>
+    <string name="tv_PopUpexito_Articulo"> Articulo </string>
+    <string name="tv_PopUpexito_Color"> Color </string>
+    <string name="btn_PopUpexito_Cerrar"> Cerrar </string>
+    <string name="error_PopUp_ApiDevolvioRaro"> Error al obtener la pieza.</string>
+
+    <string name="API_PopUp_Nombre">ConsultaStock</string>
+    <string name="API_PopUp_Req_ID">ID</string>
+    <string name="API_PopUp_Req_TipoProd">tipoProd</string>
+    <string name="API_PopUp_Req_NSerie">nSerie</string>
+
+    <!-- PopUpTrackeo -->
+    <string name="PopUpTrackeo_TipoProd">TipoProd</string>
+    <string name="PopUpTrackeo_Error">Error</string>
+    <string name="PopUpTrackeo_Nserie">Nserie</string>
+    <string name="PopUpTrackeo_Mensaje">Mensaje</string>
+    <string name="PopUpTrackeo_Asignados">Total:</string>
+    <string name="PopUpTrackeo_Cargados">Trackeadas:</string>
+    <string name="PopUpTrackeo_Verificados">Verificadas:</string>
+    <string name="PopUpTrackeo_Start">0</string>
+    <string name="PopUpTrackeo_Ver">Ver</string>
+    <string name="PopUpTrackeo_Salir">Salir</string>
+
+    <!-- Verificacion -->
+    <string name="tv_Verificacion_Title">Verificacion</string>
+
+    <string name="tv_Verificacion_Nro">Nro</string>
+    <string name="tv_Verificacion_Asignados">Asig:</string>
+    <string name="tv_Verificacion_Cargados">Carg:</string>
+    <string name="tv_Verificacion_Verificadas">Veri:</string>
+    <string name="tv_Verificacion_Leidos">Leido:</string>
+
+    <string name="tv_Verificacion_Start">0</string>
+    <string name="tv_Verificacion_TrackeoCount">TrackeoCount</string>
+
+    <string name="btn_Verificacion_LeerContenedor">Leer Contenedor</string>
+    <string name="btn_Verificacion_Verificar">Leer Piezas</string>
+    <string name="btn_Verificacion_Carga">Verificar</string>
+
+    <string name="error_Verificacion_ApiNotFound"> Error la etiqueta no tiene informacion asociada.</string>
+
+    <string name="API_Verificacion_Nombre">getContainer</string>
+    <string name="API_Verificacion_VerificarNombre">Verificar</string>
+
+    <string name="API_Verificacion_Req_ID">ID</string>
+    <string name="API_Verificacion_Req_Criterio">criterio</string>
+
+    <string name="API_Verificacion_Res_ContenedorID">containerID</string>
+    <string name="API_Verificacion_Res_Asignados">asignados</string>
+    <string name="API_Verificacion_Res_Cargados">cargados</string>
+    <string name="API_Verificacion_Res_Verificados">verificados</string>
+    <string name="API_Verificacion_Res_Piezas">piezas</string>
+
+    <string name="API_Verificacion_Req_VerificarContainerID">containerID</string>
+    <string name="API_Verificacion_Req_VerificarOperacion">operacion</string>
+    <string name="API_Verificacion_Req_VerificarPiezas">piezas</string>
+    <string name="API_Verificacion_Req_VerificarCodigo">codigo</string>
+    <string name="API_Verificacion_Req_VerificarCodigoHexa">codigoHexa</string>
+    <string name="API_Verificacion_Req_VerificarOperario">operario</string>
+
+    <string name="API_Verificacion_Res_VerificarPiezas">piezas</string>
+    <string name="API_Verificacion_Res_VerificarItems">items</string>
+    <string name="API_Verificacion_Res_VerificarAsignados">asignadas</string>
+    <string name="API_Verificacion_Res_VerificarCargados">cargadas</string>
+    <string name="API_Verificacion_Res_VerificarVerificados">verificadas</string>
+
+    <!-- Estado4 -->
+    <string name="tv_Estado4_Title">Estado 4</string>
+
+    <string name="rb_Estado4_Carga">Carga</string>
+    <string name="rb_Estado4_Descarga"><strike>Descarga</strike></string>
+    <string name="rb_Estado4_Trasbordo">Trasbordo</string>
+    <string name="tv_Estado4_Nro">Nro</string>
+
+    <string name="btn_Estado4_LeerContenedor">Leer Contenedor</string>
+    <string name="btn_Estado4_Trackear">Leer Piezas</string>
+    <string name="btn_Estado4_Carga">Cargar</string>
+    <string name="tv_Estado4_Leidos">Leido:</string>
+
+    <string name="tv_Estado4_Start">0</string>
+    <string name="tv_Estado4_TrackeoCount">TrackeoCount</string>
+
+    <string name="error_Estado4_ApiNotFound"> Error la etiqueta no tiene informacion asociada.</string>
+
+    <string name="API_Estado4_GrabarEstado4Nombre">Trackear</string>
+
+    <string name="API_Estado4_Req_GrabarEstado4ContainerID">containerID</string>
+    <string name="API_Estado4_Req_GrabarEstado4Operacion">operacion</string>
+    <string name="API_Estado4_Req_GrabarEstado4Piezas">piezas</string>
+    <string name="API_Estado4_Req_GrabarEstado4Codigo">codigo</string>
+    <string name="API_Estado4_Req_GrabarEstado4CodigoHexa">codigoHexa</string>
+    <string name="API_Estado4_Req_GrabarEstado4Operario">operario</string>
+
+    <string name="API_Estado4_Res_GrabarEstado4Piezas">piezas</string>
+    <string name="API_Estado4_Res_GrabarEstado4Items">items</string>
+    <string name="API_Estado4_Res_GrabarEstado4Asignados">asignadas</string>
+    <string name="API_Estado4_Res_GrabarEstado4Cargados">cargadas</string>
+    <string name="API_Estado4_Res_GrabarEstado4Verificados">verificadas</string>
+
+    <!-- Inventario -->
+    <string name="tv_Inventario_Title">Inventario</string>
+
+    <string name="tv_Inventario_Titulo">Titulo</string>
+
+    <string name="btn_Inventario">Leer Piezas</string>
+    <string name="btn_Inventario_Cerrar">Cerrar</string>
+    <string name="tv_Inventario_Leidos">Leido:</string>
+
+    <string name="tv_Inventario_Start">0</string>
+    <string name="tv_Inventario_TrackeoCount">TrackeoCount</string>
+
+    <string name="error_Inventario_ApiNotFound"> Error la etiqueta no tiene informacion asociada.</string>
+
+    <string name="API_Inventario_GrabarInventarioNombre">Trackear</string>
+
+    <string name="API_Inventario_Req_GrabarInventarioContainerID">containerID</string>
+    <string name="API_Inventario_Req_GrabarInventarioOperacion">operacion</string>
+    <string name="API_Inventario_Req_GrabarInventarioPiezas">piezas</string>
+    <string name="API_Inventario_Req_GrabarInventarioCodigo">codigo</string>
+    <string name="API_Inventario_Req_GrabarInventarioCodigoHexa">codigoHexa</string>
+    <string name="API_Inventario_Req_GrabarInventarioOperario">operario</string>
+
+    <string name="API_Inventario_Res_GrabarInventarioPiezas">piezas</string>
+    <string name="API_Inventario_Res_GrabarInventarioItems">items</string>
+    <string name="API_Inventario_Res_GrabarInventarioAsignados">asignadas</string>
+    <string name="API_Inventario_Res_GrabarInventarioCargados">cargadas</string>
+    <string name="API_Inventario_Res_GrabarInventarioVerificados">verificadas</string>
+
+</resources>

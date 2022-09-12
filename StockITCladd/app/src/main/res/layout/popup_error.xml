@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/bg_PopUpError"
+    android:background="#FF0000"
+    >
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/view_split_left">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+<View
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_weight="0.05"></View>
+        <TextView
+            android:id="@+id/tv_PopUp_TipoError"
+            android:layout_width = "0dp"
+            android:layout_height = "wrap_content"
+            android:layout_weight="0.8"
+            android:textSize="20dp"
+            android:text="@string/tv_PopUpError_TitleNoAsignada"
+            />
+        <Button
+            android:id="@+id/btn_PopUp_cerrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:textSize="24dp"
+            android:text="X"></Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="6dp"
+        android:id="@+id/v">
+
+
+        <LinearLayout
+            android:id="@+id/ll_PopUpError_Row_Tipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:weightSum="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Tipo_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="0.15"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_Tipo"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Tipo"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Pieza_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="0.15"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_Pieza"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Pieza"
+                android:layout_width="0dp"
+                android:layout_weight="0.50"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Row_DepSec"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_PopUpError_DepSec_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_DepSec"
+                android:layout_gravity="center"
+
+
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_DepSec"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Row_Fecha"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Fecha_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_Fecha"
+                android:layout_gravity="center"
+
+
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Fecha"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Row_Partida"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Partida_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_Partida"
+                android:layout_gravity="center"
+
+
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Partida"
+                android:layout_width="0dp"
+                android:layout_weight="0.60"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Partida_2"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Row_Articulo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Articulo_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_Articulo"
+                android:layout_gravity="center"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Articulo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Row_Color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Color_Fijo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_PopUpError_Color"
+                android:layout_gravity="center"
+
+
+                />
+
+            <TextView
+                android:id="@+id/tv_PopUpError_Color"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corners_rectangle_morelist_gray"
+                android:text=""
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+<View
+    android:layout_width="0dp"
+    android:layout_height="50dp"
+    android:layout_weight="0.1"
+/>            <Button
+                android:id="@+id/btnCerrarPopUp"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.8"
+                android:text="@string/btn_PopUpError_Cerrar"></Button>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+</RelativeLayout>

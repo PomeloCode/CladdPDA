@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TipoProducto -->
+    <string-array name="Array_TipoProducto">
+        <item>PU</item>
+        <item>PL</item>
+    </string-array>
+
+
+    <string-array name="Array_BaseSpeedType">
+        <item >0|Tari=25us,FM0,LHF=40KHz</item>
+        <item >1|Concentrated</item>
+        <item >2|Tari=25us,Miller4,LHF=300KHz</item>
+        <item >3|Fast</item>
+        <item >255|AUTO</item>
+    </string-array>
+    
+    <string-array name="Array_Power">
+        <item >0</item>
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+        <item >5</item>
+        <item >6</item>
+        <item >7</item>
+        <item >8</item>
+        <item >9</item>
+        <item >10</item>
+        <item >11</item>
+        <item >12</item>
+        <item >13</item>
+        <item >14</item>
+        <item >15</item>
+        <item >16</item>
+        <item >17</item>
+        <item >18</item>
+        <item >19</item>
+        <item >20</item>
+        <item >21</item>
+        <item >22</item>
+        <item >23</item>
+        <item >24</item>
+        <item >25</item>
+        <item >26</item>
+        <item >27</item>
+        <item >28</item>
+        <item >29</item>
+        <item >30</item>
+    </string-array>
+    <!-- 间隔读-读时间列表 -->
+    <string-array name="Array_ReadTime">
+        <item >0</item>
+        <item >100</item>
+        <item >200</item>
+        <item >300</item>
+        <item >500</item>
+        <item >800</item>
+        <item >1000</item>
+        <item >5000</item>
+        <item >10000</item>
+    </string-array>
+    <!-- 间隔读-停止时间列表 -->
+    <string-array name="Array_StopTime">
+        <item >0</item>
+        <item >100</item>
+        <item >200</item>
+        <item >300</item>
+        <item >500</item>
+        <item >800</item>
+        <item >1000</item>
+        <item >5000</item>
+        <item >10000</item>
+    </string-array>
+    <!-- 间隔读-停止时间列表 -->
+    <string-array name="Array_QValue">
+        <item >0</item>
+        <item >4</item>
+    </string-array>
+    <!-- 频段列表 -->
+    <string-array name="Array_Frequency">
+        <item >0,GB 920~925MHz</item>
+        <item >1,GB 840~845MHz</item>
+        <item >2,GB 840~845MHz And 920~925MHz</item>
+        <item >3,FCC 902~928MHz</item>
+        <item >4,ETSI 865~868MHz</item>
+        <item >5,JP 916.8~920.4MHz</item>
+        <item >6,TW 922.25~927.75MHz</item>
+        <item >7,ID 923.125~925.125MHz</item>
+        <item >8,RUS 866.6~867.4MHz</item>
+    </string-array>
+    <string-array name="Array_Carrier">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="Array_TagType">
+        <item>6C</item>
+        <item>6B</item>
+    </string-array>
+    <!-- Block列表 -->
+
+
+</resources>
