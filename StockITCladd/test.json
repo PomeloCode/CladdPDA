@@ -1,7 +1,7 @@
 {
-  "latestVersion": "1.2.2",
-  "latestVersionCode": 10,
-  "url": "https://github.com/javiersantos/AppUpdater/releases",
+  "latestVersion": "1.0.0",
+  "latestVersionCode": 1,
+  "url": "https://github.com/PomeloCode/CladdPDA/releases",
   "releaseNotes": [
     "- First evolution",
     "- Second evolution",
