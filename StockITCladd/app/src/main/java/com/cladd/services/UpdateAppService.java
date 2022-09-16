@@ -44,7 +44,7 @@ public class UpdateAppService  extends BaseActivity {
 
         Call<AppFileData> call = json.GetDataUpdateApp("extrakey", "extravalue");
 
-        apkFileUrl = "https://raw.githubusercontent.com/PomeloCode/CladdPDA/main/StockITCladd/";
+        apkFileUrl = "https://github.com/PomeloCode/CladdPDA/blob/main/apk/app-debug.apk?raw=true";
 
         call.enqueue(new Callback<AppFileData>() {
             @Override
