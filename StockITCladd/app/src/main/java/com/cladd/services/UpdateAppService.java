@@ -44,8 +44,6 @@ public class UpdateAppService  extends BaseActivity {
 
         Call<AppFileData> call = json.GetDataUpdateApp("extrakey", "extravalue");
 
-        apkFileUrl = "https://github.com/PomeloCode/CladdPDA/blob/main/apk/app-debug.apk?raw=true";
-
         call.enqueue(new Callback<AppFileData>() {
             @Override
             public void onResponse(Call<AppFileData> call, Response<AppFileData> response) {
@@ -53,6 +51,10 @@ public class UpdateAppService  extends BaseActivity {
                     return;
                 AppFileData server = response.body();
                 AppFileData local = GetLocalAppInfo();
+
+        apkFileUrl = "https://github.com/PomeloCode/CladdPDA/blob/main/apk/stockit" +
+                server.getVersionName()
+                + ".apk?raw=true";
 
                 if (!(server.getVersionName().equals(local.getVersionName()) && server.getVersionCode() == local.getVersionCode()))
                     ShowDownloadAppDialog();
