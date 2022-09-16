@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "455688184971",
+    "project_id": "stockitcladd",
+    "storage_bucket": "stockitcladd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455688184971:android:751e9907453c8e9041208e",
+        "android_client_info": {
+          "package_name": "com.cladd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455688184971-v0c8hie1k0utgu1u0f6sj0aslg1pkvkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA55MF-Zw4DfdNmaqDcN5QaclHHyl0qJ1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455688184971-v0c8hie1k0utgu1u0f6sj0aslg1pkvkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

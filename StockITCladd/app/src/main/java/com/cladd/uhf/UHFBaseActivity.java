@@ -1,17 +1,16 @@
 package com.cladd.uhf;
 
+import static com.pda.rfid.uhf.UHFReader._Config;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.cladd.entities.api.Operario;
 import com.cladd.entities.model.PDASettings;
-import com.cladd.modulos.VerDetallePiezaActivity;
 import com.cladd.services.DataBaseHelper;
-import com.google.gson.Gson;
 import com.hopeland.pda.example.R;
 import com.pda.rfid.EPCModel;
 import com.port.Adapt;
@@ -28,11 +27,13 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
+
+
 
 /**
  * @author RFID_C Base Activity
@@ -101,7 +102,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 	 */
 	public void UHF_Dispose() {
 		if (_UHFSTATE == true) {
-			UHFReader._Config.CloseConnect();
+			_Config.CloseConnect();
 			_UHFSTATE = false;
 		}
 	}
@@ -113,7 +114,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 	@SuppressWarnings("serial")
 	protected void UHF_GetReaderProperty() {
 		//String propertyStr = CLReader.GetReaderProperty();
-		String propertyStr = UHFReader._Config.GetReaderProperty();
+		String propertyStr = _Config.GetReaderProperty();
 		String[] propertyArr = propertyStr.split("\\|");
 		HashMap<Integer, Integer> hm_Power = new HashMap<Integer, Integer>() {
 			{
@@ -141,13 +142,13 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 	protected void UHF_SetTagUpdateParam() {
 		// First query whether the current Settings are consistent, if not before setting
 		//String searchRT = CLReader.GetTagUpdateParam();
-		String searchRT = UHFReader._Config.GetTagUpdateParam();
+		String searchRT = _Config.GetTagUpdateParam();
 		String[] arrRT = searchRT.split("\\|");
 		if (arrRT.length >= 2) {
 			int nowUpDataTime = Integer.parseInt(arrRT[0]);
 			if (_UpDataTime != nowUpDataTime) {
 				//CLReader.SetTagUpdateParam("1," + _UpDataTime); // Set the tag repeat upload time to 20ms
-				UHFReader._Config.SetTagUpdateParam(_UpDataTime, 0);//RSSIFilter
+				_Config.SetTagUpdateParam(_UpDataTime, 0);//RSSIFilter
 			} else {
 
 			}
@@ -224,9 +225,6 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 		synchronized (beep_Lock) {
 			beep_Lock.notifyAll();
 		}
-		UHFReader._Config.SetANTPowerParam(1, 12);
-		SetBaseBand("3", "4", "0", "2", "false", "false");
-
 		UHF_Dispose();
 	}
 
@@ -236,6 +234,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 	}
 
 	public void DisposeAll() {
+
 		DisposeRFID();
 		DisposeScan();
 		DisposeDB();
@@ -306,7 +305,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 			typePosition = 255;
 		// qValue: 0~15, the initial Q value used by the reader。
 		int qValue = Integer.parseInt(QValue);
-		int rt = UHFReader._Config.SetEPCBaseBandParam(typePosition, qValue, Session, Flag);
+		int rt = _Config.SetEPCBaseBandParam(typePosition, qValue, Session, Flag);
 
 //      1,00000000&//nada
 //      1,00000010&//Tag focus
@@ -350,6 +349,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 		pda.rssiFilter = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_rssiFilter)).toLowerCase(Locale.ROOT)) ? Integer.parseInt((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_rssiFilter)).toLowerCase(Locale.ROOT)))) : null;
 		pda.isOpen = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_isOpen)).toLowerCase(Locale.ROOT)) ? Boolean.parseBoolean((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_isOpen)).toLowerCase(Locale.ROOT)))) : null;
 		pda.timeAutoIdle = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_timeAutoIdle)).toLowerCase(Locale.ROOT)) ? Integer.parseInt((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_timeAutoIdle)).toLowerCase(Locale.ROOT)))) : null;
+		pda.rfu = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_rfu)).toLowerCase(Locale.ROOT)) ? pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_rfu)).toLowerCase(Locale.ROOT)).toLowerCase(Locale.ROOT) : null;
 		pda.tagFocus = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_tagFocus)).toLowerCase(Locale.ROOT)) ? Boolean.parseBoolean((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_tagFocus)).toLowerCase(Locale.ROOT)))) : null;
 		pda.fastID = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_fastID)).toLowerCase(Locale.ROOT)) ? Boolean.parseBoolean((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_fastID)).toLowerCase(Locale.ROOT)))) : null;
 		pda.rfu2 = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_rfu2)).toLowerCase(Locale.ROOT)) ? pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_rfu2)).toLowerCase(Locale.ROOT)).toLowerCase(Locale.ROOT) : null;
@@ -366,81 +366,159 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 		pda.LBTMode = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_LBTMode)).toLowerCase(Locale.ROOT)) ? ((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_LBTMode)).toLowerCase(Locale.ROOT)))) : null;
 		pda.RSSIMaxVal = pdaConfig.containsKey((metodo + getString(R.string.DB_DynamicConfig_Name_RSSIMaxVal)).toLowerCase(Locale.ROOT)) ? ((pdaConfig.get((metodo + getString(R.string.DB_DynamicConfig_Name_RSSIMaxVal)).toLowerCase(Locale.ROOT)))) : null;
 
-
-		Gson gson = new Gson();
-		showMsg(gson.toJson(pda));
-
 		return pda;
 	}
 
 	public void SetPDAConfigurations(PDASettings pda) {
-		if (pda.frequency >= 0)
-			UHFReader._Config.SetFrequency(pda.frequency);
+		if(true) {
+			if (pda.frequency != _Config.GetFrequency()) {
+				try {
 
-		if (pda.antCount >= 0 && pda.antPower >= 0)
-			UHFReader._Config.SetANTPowerParam(pda.antCount, pda.antPower);
+					_Config.SetFrequency(pda.frequency);
+					Thread.sleep(500);
 
-		if (pda.baseband >= 0 && pda.qValue >= 0 && pda.session >= 0 && pda.flag >= 0)
-			UHFReader._Config.SetEPCBaseBandParam(pda.baseband, pda.qValue, pda.session, pda.flag);
+				} catch (Exception ex) {
+				}
+			}
 
-		if (pda.repeatTimeFilter >= 0 && pda.rssiFilter >= 0)
-			UHFReader._Config.SetTagUpdateParam(pda.repeatTimeFilter, pda.rssiFilter);
+			if (pda.antPower != _Config.GetANTPowerParam()) {
+				try {
 
-		if (pda.timeAutoIdle >= 0)
-			UHFReader._Config.SetReaderAutoSleepParam(pda.isOpen, pda.timeAutoIdle);
+					_Config.SetANTPowerParam(pda.antCount, pda.antPower);
+					Thread.sleep(500);
+				} catch (Exception ex) {
+				}
 
-		//BaseBandx 1
-		if (pda.rfu != null && pda.rfu2 !=null ) {
+			}
 
-			String params = pda.rfu;
+			String baseband = pda.baseband + "|" + pda.qValue + "|" + pda.session + "|" + pda.flag;
 
-			if (pda.tagFocus && pda.fastID)
-				params = params + "3";
-			if (pda.tagFocus && pda.fastID)
-				params = params + "1";
+			if (!baseband.equals(_Config.GetEPCBaseBandParam())) {
+				try {
+
+					_Config.SetEPCBaseBandParam(pda.baseband, pda.qValue, pda.session, pda.flag);
+					Thread.sleep(500);
+				} catch (Exception ex) {
+				}
+			}
+
+			String tagUpdate = pda.repeatTimeFilter + "|" + pda.rssiFilter;
+
+			if (!tagUpdate.equals(_Config.GetTagUpdateParam())) {
+				try {
+					_Config.SetTagUpdateParam(pda.repeatTimeFilter, pda.rssiFilter);
+					Thread.sleep(500);
+				} catch (Exception ex) {
+				}
+			}
+
+
+			String autoSleep = (pda.isOpen) ? "1" : "0" + "|" + pda.timeAutoIdle;
+			String trsaa = UHFReader._Config.GetReaderAutoSleepParam();
+			if (!autoSleep.equals(trsaa)) {
+				try {
+
+					UHFReader._Config.SetReaderAutoSleepParam(pda.isOpen, pda.timeAutoIdle);
+					Thread.sleep(500);
+
+				} catch (Exception ex) {
+				}
+			}
+
+			String basex = UHFReader.getUHFInstance().GetBaseBandX();
+			String[] basexParams = basex.split("&");
+
+			String basex1 = getString(R.string.RFID_BaseBandX1) + pda.rfu;
+
+//      1,00000000&//nada
+//      1,00000010&//Tag focus
+//      1,00000020//FastID
+//      1,00000030//TagFocus & FastID
+
+			if (!pda.tagFocus && !pda.fastID)
+				basex1 = basex1 + "0";
+			if (pda.tagFocus && !pda.fastID)
+				basex1 = basex1 + "1";
 			if (!pda.tagFocus && pda.fastID)
-				params = params + "2";
-			if (!pda.tagFocus && pda.fastID)
-				params = params + "0";
+				basex1 = basex1 + "2";
+			if (pda.tagFocus && pda.fastID)
+				basex1 = basex1 + "3";
 
-			params = params + pda.antPower + pda.rfu2;
+			basex1 = basex1 + pda.rfu2;
 
-			UHFReader.getUHFInstance().SetBaseBandX(getString(R.string.RFID_BaseBandX1) + params);
 
+			//BaseBandx 1
+			if (!basexParams[0].equals(basex1)) {
+				try {
+
+					UHFReader.getUHFInstance().SetBaseBandX(basex1);
+					Thread.sleep(500);
+
+				} catch (Exception ex) {
+				}
+			}
+
+			String basex2 = getString(R.string.RFID_BaseBandX2) + pda.maxQ + pda.minQ + pda.tmult + pda.DynamicStartQenable;
+
+			//BaseBandx 2
+			if (!basexParams[1].equals(basex2)) {
+				try {
+
+					UHFReader.getUHFInstance().SetBaseBandX(basex2);
+					Thread.sleep(500);
+
+				} catch (Exception ex) {
+				}
+
+			}
+
+			String basex3 = getString(R.string.RFID_BaseBandX3) + pda.antenna + pda.numberOfRetries + pda.maxAntennaResistancetime;
+
+			//BaseBandx 3
+			if (!basexParams[2].equals(basex3)) {
+				try {
+
+					UHFReader.getUHFInstance().SetBaseBandX(basex3);
+					Thread.sleep(500);
+
+				} catch (Exception ex) {
+				}
+
+			}
+
+			String basex4 = getString(R.string.RFID_BaseBandX4) + pda.waitingTimeAntSwitch + pda.antennaSwitchingSequence + pda.antennaProtectionThreshold + "00";
+
+			//BaseBandx 4
+			if (!basexParams[3].equals(basex4)) {
+				try {
+
+					UHFReader.getUHFInstance().SetBaseBandX(basex4);
+					Thread.sleep(500);
+
+				} catch (Exception ex) {
+				}
+
+			}
+
+			String basex5 = getString(R.string.RFID_BaseBandX5) + pda.LBTMode + pda.RSSIMaxVal + "0000";
+
+			//BaseBandx 5
+			if (!basexParams[4].equals(basex5)) {
+				try {
+
+					UHFReader.getUHFInstance().SetBaseBandX(basex5);
+					Thread.sleep(500);
+
+				} catch (Exception ex) {
+				}
+
+			}
 		}
-
-		//BaseBandx 2
-		if (pda.maxQ != null && pda.minQ != null && pda.tmult != null && pda.DynamicStartQenable != null) {
-
-			String params = pda.maxQ + pda.minQ + pda.tmult + pda.DynamicStartQenable;
-			UHFReader.getUHFInstance().SetBaseBandX(getString(R.string.RFID_BaseBandX2) + params);
-
-		}
-
-		//BaseBandx 3
-		if (pda.antenna != null && pda.numberOfRetries != null && pda.maxAntennaResistancetime != null){
-			String params=pda.antenna + pda.numberOfRetries + pda.maxAntennaResistancetime;
-			UHFReader.getUHFInstance().SetBaseBandX(getString(R.string.RFID_BaseBandX3)+ params);
-		}
-
-		//BaseBandx 4
-		if (pda.waitingTimeAntSwitch != null && pda.antennaSwitchingSequence != null && pda.antennaProtectionThreshold != null) {
-
-			String params = pda.waitingTimeAntSwitch + pda.antennaSwitchingSequence + pda.antennaProtectionThreshold + "00";
-			UHFReader.getUHFInstance().SetBaseBandX(getString(R.string.RFID_BaseBandX4) + params);
-		}
-
-		//BaseBandx 5
-		if (pda.LBTMode != null && pda.RSSIMaxVal != null) {
-
-			String params = pda.LBTMode + pda.RSSIMaxVal + "0000";
-			UHFReader.getUHFInstance().SetBaseBandX(getString(R.string.RFID_BaseBandX5) + params);
-		}
-
 	}
 
-	protected void InitRFIDModule() {
-		log = this;
+	protected void InitRFIDModule(IAsynchronousMessage log,String module) {
+
+		showWait("Configurando Antena");
 		if (!UHF_Init(log)) { // Failed to power on the module
 			showMsg(getString(R.string.RFID_ErrorConexion),
 					new DialogInterface.OnClickListener() {
@@ -449,20 +527,8 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 							finish();
 						}
 					});
-		}
-	}
-
-	protected void InitBCModule() {
-
-		if (!scanReader.open(getApplicationContext())) {
-			showMsg(getString(R.string.BC_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							finish();
-						}
-					});
-		}
+		}else
+			ConfigureRFIDModule(module);
 
 	}
 
@@ -506,8 +572,10 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 
 			PDASettings pda = FillPDASettings(GetPDAConfigDB(module),module);
 			SetPDAConfigurations(pda);
+			hideWait();
 
 		} catch (Exception ee) {
+			hideWait();
 			showMsg(getString(R.string.RFID_ErrorCambioPotencia));
 		}
 
@@ -534,7 +602,11 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 	protected void onResume() {
 		super.onResume();
 		InitDBConexion();
-		InitRFIDModule();
+
+		String Classname=this.getClass().getSimpleName();
+		Classname = Classname.substring(0,Classname.length()-8);
+
+		InitRFIDModule(this, Classname);
 		InitBCModule();
 		InitSoundModule();
 	}

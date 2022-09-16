@@ -83,99 +83,24 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-		InitRFIDModule();
-
+		InitDBConexion();
+		InitRFIDModule(this,getString(R.string.GrabarContenedor));
+		InitBCModule();
+		InitSoundModule();
+		InitView();
 	}
 
 	@Override
-	protected void onResume() {
+	protected void onResume(){
 		super.onResume();
-		InitRFIDModule();
-		super.UHF_GetReaderProperty();
-	}
-
-	protected void InitRFIDModule() {
-		log = this;
-		if (!UHF_Init(log)) { // Failed to power on the module
-			showMsg(getString(R.string.RFID_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							GrabarContenedorActivity.this.finish();
-						}
-					});
-		} else {
-			InitSoundModule();
-
-		}
-	}
-
-	protected void ConfigureRFIDModule(){
-		try {
-
-			PDASettings pda = FillPDASettings(GetPDAConfigDB(getString(R.string.GrabarContenedor)),getString(R.string.GrabarContenedor));
-			SetPDAConfigurations(pda);
-
-		} catch (Exception ee) {
-			Log.d("as",ee.getMessage());
-		}
-
-
-
-	}
-
-	protected void InitSoundModule() {
-		IsFlushList = true;
-
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() { // The buzzer sounds
+		showWait("Configurando Antena");
+		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
 			@Override
 			public void run() {
-				while (IsFlushList) {
-					synchronized (beep_Lock) {
-						try {
-							beep_Lock.wait();
-						} catch (InterruptedException e) {
-						}
-					}
-					if (IsFlushList) {
-						toneGenerator
-								.startTone(ToneGenerator.TONE_PROP_BEEP);
-					}
-
-				}
+				ConfigureRFIDModule(getString(R.string.GrabarContenedor));
 			}
 		});
-
-		InitDBConexion();
-
 	}
-
-	protected void InitDBConexion() {
-
-		dataBaseHelper = new DataBaseHelper(GrabarContenedorActivity.this);
-
-		BaseUrlApi = dataBaseHelper.getDynamicConfigsData(getString(R.string.API_ENDPOINT));
-
-		GetOperarioDB();
-		ConfigureRFIDModule();
-
-		InitView();
-
-
-	}
-
-	public void GetOperarioDB(){
-
-		_Operario = new Operario();
-
-		_Operario.setLogeo(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOLOG)));
-		_Operario.setDescripcion(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIODESC)));;
-		_Operario.setHabilitaUsoTracker(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOUSOTRACKER)));
-		_Operario.setPlanta(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOPLANTA)));
-
-	}
-
-	/////other db gets
 
 	protected void InitView() {
 
@@ -232,14 +157,6 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 	}
 
-	@Override
-	public boolean onKeyDown (int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode))
-			StartReading();
-
-		return super.onKeyDown(keyCode, event);
-	}
-
 	public void VirtualBtnKeyDown (View v) {
 
 		Button btnGrabar = (Button) v;
@@ -267,7 +184,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 				int ret = -1;
 
-				cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerWriteContainerRead))));
+				UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerWriteContainerRead))));
 
 				if (cambioPotAntena == 0) {
 
@@ -517,14 +434,6 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 				btn_GrabarContenedor.setClickable(true);
 			}
 		});
-	}
-
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode)&& isStartPingPong) {
-			StopReading();
-		}
-		return super.onKeyUp(keyCode, event);
 	}
 
 	public void Clear(View v) {

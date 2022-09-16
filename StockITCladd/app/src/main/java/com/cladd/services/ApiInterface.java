@@ -1,6 +1,7 @@
 package com.cladd.services;
 
 
+import com.cladd.entities.api.AppFileData;
 import com.google.gson.JsonElement;
 
 import okhttp3.RequestBody;
@@ -89,6 +90,11 @@ public interface ApiInterface {
 
     @POST("Api/IntegrationStockIT/NuevoInventario")
     Call<JsonElement> SaveInventario(@Body RequestBody map);
+
+    /************************************   AppUpdate **************************************************/
+
+    @GET("version.txt")
+    Call<AppFileData> GetDataUpdateApp (@Query("extraKey")String strExtraKey, @Query("extraValue")String strExtraValue);
 
 }
 

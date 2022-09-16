@@ -84,6 +84,7 @@ public class PopUpActivity extends BaseActivity {
         exito = getIntent().getBooleanExtra("exito", false);
 
         InitDBConexion();
+        InitView();
 
     }
 
@@ -93,7 +94,6 @@ public class PopUpActivity extends BaseActivity {
 
         BaseUrlApi = dataBaseHelper.getDynamicConfigsData(getString(R.string.API_ENDPOINT));
 
-        InitView();
 
 
     }

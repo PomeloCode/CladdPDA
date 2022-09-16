@@ -25,6 +25,7 @@ import com.hopeland.pda.example.R;
 import com.pda.rfid.EPCModel;
 import com.pda.rfid.IAsynchronousMessage;
 import com.pda.rfid.uhf.UHFReader;
+import com.util.Helper.Helper_ThreadPool;
 
 import org.json.JSONObject;
 
@@ -123,11 +124,18 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		InitDBConexion();
-		InitRFIDModule();
-		ConfigureRFIDModule(getString(R.string.VerDetallePieza));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
+
+	}
+
+	@Override
+	protected void onResume(){
+		super.onResume();
+		showWait("Configurando Antena");
+		InitRFIDModule(this,getString(R.string.VerDetallePieza));
+
 
 	}
 
@@ -345,25 +353,32 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 
 	@Override
 	public void OutPutEPC(EPCModel model) {
-		try {
-			synchronized (hmList_Lock) {
-				if (hmList.isEmpty()) {
+		if (!model._EPC.substring(0, 4).equals(getString(R.string.RFID_VirginStartTag))) {
+			if (model._EPC.substring(2, 4).equals(getString(R.string.StockITBusinessID))) {
+				try {
+					synchronized (hmList_Lock) {
+						if (hmList.isEmpty()) {
 
-					RestartViewPieza();
-					hmList.put(model._EPC + model._TID, model);
+							RestartViewPieza();
+							hmList.put(model._EPC + model._TID, model);
 
-				} else
-					return;
-			}
-			synchronized (beep_Lock) {
-				beep_Lock.notify();
-				GetPieza(model._EPC,new String(),new String());
-			}
+						} else
+							return;
+					}
+					synchronized (beep_Lock) {
+						beep_Lock.notify();
+						GetPieza(model._EPC, new String(), new String());
+					}
 
-		} catch (Exception ex) {
-			Log.d("Erroroutput",ex.getMessage());
+				} catch (Exception ex) {
+					Log.d("Erroroutput", ex.getMessage());
+				}
+
+			}else
+				showMsg("Esta Etiqueta no pertenece a una pieza");
 		}
-
+		else
+			showMsg("Etiqueta no Grabada");
 	}
 
 	/**
@@ -465,6 +480,9 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 			case MSG_RESULT_BC:
 				if(!msg.obj.toString().equals(new String()))
 					BCLeido(msg.obj.toString());
+				break;
+			case MSG_RESULT_BEEP:
+					toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				break;
 			default:
 				super.msgProcess(msg);

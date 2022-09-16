@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.SystemClock;
+
 import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+
 
 import com.cladd.entities.api.Contenedor;
 import com.cladd.entities.api.Operario;
@@ -129,108 +132,27 @@ public class TrackeoActivity extends UHFBaseActivity implements
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-		InitRFIDModule();
+
+		InitDBConexion();
+		InitRFIDModule(this,getString(R.string.Trackeo));
+		InitBCModule();
+		InitSoundModule();
+		InitView();
 
 	}
 
 	@Override
-	protected void onResume() {
+	protected void onResume(){
 		super.onResume();
-		ReInitRFIDModule();
-		super.UHF_GetReaderProperty();
-	}
-
-	protected void ReInitRFIDModule() {
-		log = this;
-		if (!UHF_Init(log)) { // Failed to power on the module
-			showMsg(getString(R.string.RFID_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							TrackeoActivity.this.finish();
-						}
-					});
-		}
-	}
-
-	protected void InitRFIDModule() {
-		log = this;
-		if (!UHF_Init(log)) { // Failed to power on the module
-			showMsg(getString(R.string.RFID_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							TrackeoActivity.this.finish();
-						}
-					});
-		} else {
-			InitSoundModule();
-
-		}
-	}
-
-	protected void ConfigureRFIDModule() {
-		try {
-
-			PDASettings pda = FillPDASettings(GetPDAConfigDB(getString(R.string.Trackeo)),getString(R.string.Trackeo));
-			SetPDAConfigurations(pda);
-
-		} catch (Exception ee) {
-			Log.d("as",ee.getMessage());
-		}
-	}
-
-	protected void InitSoundModule() {
-		IsFlushList = true;
-
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() { // The buzzer sounds
+		showWait("Configurando Antena");
+		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
 			@Override
 			public void run() {
-				while (IsFlushList) {
-					synchronized (beep_Lock) {
-						try {
-							beep_Lock.wait();
-						} catch (InterruptedException e) {
-						}
-					}
-					if (IsFlushList) {
-						toneGenerator
-								.startTone(ToneGenerator.TONE_PROP_BEEP);
-					}
-
-				}
+				ConfigureRFIDModule(getString(R.string.Trackeo));
 			}
 		});
-
-		InitDBConexion();
-
 	}
 
-	protected void InitDBConexion() {
-
-		dataBaseHelper = new DataBaseHelper(TrackeoActivity.this);
-
-		BaseUrlApi = dataBaseHelper.getDynamicConfigsData(getString(R.string.API_ENDPOINT));
-
-		GetOperarioDB();
-		ConfigureRFIDModule();
-
-		InitView();
-
-
-	}
-
-	public void GetOperarioDB() {
-
-		_Operario = new Operario();
-
-		_Operario.setLogeo(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOLOG)));
-		_Operario.setDescripcion(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIODESC)));
-		;
-		_Operario.setHabilitaUsoTracker(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOUSOTRACKER)));
-		_Operario.setPlanta(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOPLANTA)));
-
-	}
 
 	public void SetAntennaConfigurations(String funcion) {
 
@@ -402,14 +324,6 @@ public class TrackeoActivity extends UHFBaseActivity implements
 			}
 		});
 
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode)) { // Press the handle button
-			StartReading();
-		}
-		return super.onKeyDown(keyCode, event);
 	}
 
 	public void VirtualBtnKeyDown(View v) {
@@ -868,14 +782,6 @@ public class TrackeoActivity extends UHFBaseActivity implements
 					btn_Trackeo.setClickable(true);
 				}
 			});
-	}
-
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode) && isStartPingPong) {
-			StopReading();
-		}
-		return super.onKeyUp(keyCode, event);
 	}
 
 	public void ShowPopupErrorTrackeo(String tag) {

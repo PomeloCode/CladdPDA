@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
-
 import com.cladd.entities.api.DynamicConfig;
 import com.cladd.entities.api.Colores;
 import com.cladd.entities.api.Productos;
@@ -33,6 +32,7 @@ import com.cladd.premodulo.VerDetalleContenedorActivity;
 import com.cladd.modulos.VerificacionActivity;
 import com.cladd.services.ApiInterface;
 import com.cladd.services.DataBaseHelper;
+import com.cladd.services.UpdateAppService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
@@ -58,8 +58,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ItemMainActivity extends BaseActivity {
 
-	Boolean Kevin = Boolean.TRUE;
-	boolean activeActivity=false;
+	private static final int MSG_UPDATEAPP_OK = 1212;
+	Boolean Kevin = Boolean.FALSE;
+	boolean activeActivity = false;
 	private long lastClickTime = 0;
 
 	GridView gridView;
@@ -104,89 +105,95 @@ public class ItemMainActivity extends BaseActivity {
 
 		if (Config) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.config);
+			map.put(getString(R.string.grid_itemImage), R.drawable.config);
 			map.put(getString(R.string.grid_itemText), getString(R.string.Config));
 			map.put(getString(R.string.grid_itemActivity), ConfigActivity.class);
 			listItemArrayList.add(map);
 		} // Config
 		if (MasterConfig) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.masterconfig);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.MasterConfig));
-			map.put(getString(R.string.grid_itemActivity ), MasterConfigActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.masterconfig);
+			map.put(getString(R.string.grid_itemText), getString(R.string.MasterConfig));
+			map.put(getString(R.string.grid_itemActivity), MasterConfigActivity.class);
 			listItemArrayList.add(map);
 		} // MasterConfig
 		if (VerDetalle) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.verdetalle);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.VerDetallePieza));
-			map.put(getString(R.string.grid_itemActivity ), VerDetallePiezaActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.verdetalle);
+			map.put(getString(R.string.grid_itemText), getString(R.string.VerDetallePieza));
+			map.put(getString(R.string.grid_itemActivity), VerDetallePiezaActivity.class);
 			listItemArrayList.add(map);
 		} // VerDetalle
 		if (VerDetalleContenedor) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.verdetallecontenedor);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.VerDetalleContenedor));
-			map.put(getString(R.string.grid_itemActivity ), VerDetalleContenedorActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.verdetallecontenedor);
+			map.put(getString(R.string.grid_itemText), getString(R.string.VerDetalleContenedor));
+			map.put(getString(R.string.grid_itemActivity), VerDetalleContenedorActivity.class);
 			listItemArrayList.add(map);
 		} // VerDetalleContenedor
 		if (GrabarPieza) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.grabarpieza);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.GrabarPieza));
-			map.put(getString(R.string.grid_itemActivity ), GrabarPiezaActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.grabarpieza);
+			map.put(getString(R.string.grid_itemText), getString(R.string.GrabarPieza));
+			map.put(getString(R.string.grid_itemActivity), GrabarPiezaActivity.class);
 			listItemArrayList.add(map);
 		} // GrabarPieza
 		if (GrabarContenedor) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.grabarcontenedor);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.GrabarContenedor));
-			map.put(getString(R.string.grid_itemActivity ), GrabarContenedorActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.grabarcontenedor);
+			map.put(getString(R.string.grid_itemText), getString(R.string.GrabarContenedor));
+			map.put(getString(R.string.grid_itemActivity), GrabarContenedorActivity.class);
 			listItemArrayList.add(map);
 		} // GrabarContenedor
 		if (Finder) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.finder);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.Finder));
-			map.put(getString(R.string.grid_itemActivity ), FinderBaseActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.finder);
+			map.put(getString(R.string.grid_itemText), getString(R.string.Finder));
+			map.put(getString(R.string.grid_itemActivity), FinderBaseActivity.class);
 			listItemArrayList.add(map);
 		} // Finder
 		if (Trackeo) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.trackeo);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.Trackeo));
-			map.put(getString(R.string.grid_itemActivity ), TrackeoActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.trackeo);
+			map.put(getString(R.string.grid_itemText), getString(R.string.Trackeo));
+			map.put(getString(R.string.grid_itemActivity), TrackeoActivity.class);
 			listItemArrayList.add(map);
 		} // Trackeo
 		if (Verificacion) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.verificar);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.Verificacion));
-			map.put(getString(R.string.grid_itemActivity ), VerificacionActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.verificar);
+			map.put(getString(R.string.grid_itemText), getString(R.string.Verificacion));
+			map.put(getString(R.string.grid_itemActivity), VerificacionActivity.class);
 			listItemArrayList.add(map);
 		} // Verificacion
 		if (Estado4) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.estado4);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.Estado4));
-			map.put(getString(R.string.grid_itemActivity ), Estado4Activity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.estado4);
+			map.put(getString(R.string.grid_itemText), getString(R.string.Estado4));
+			map.put(getString(R.string.grid_itemActivity), Estado4Activity.class);
 			listItemArrayList.add(map);
 		} // Estado4
 		if (Inventario) { // version
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(getString(R.string.grid_itemImage ), R.drawable.inventario);
-			map.put(getString(R.string.grid_itemText ), getString(R.string.Inventario));
-			map.put(getString(R.string.grid_itemActivity ), InventarioActivity.class);
+			map.put(getString(R.string.grid_itemImage), R.drawable.inventario);
+			map.put(getString(R.string.grid_itemText), getString(R.string.Inventario));
+			map.put(getString(R.string.grid_itemActivity), InventarioActivity.class);
 			listItemArrayList.add(map);
 		} // Inventario
-
+		if (true) { // version
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put(getString(R.string.grid_itemImage), R.drawable.update);
+			map.put(getString(R.string.grid_itemText), "Actualizar");
+			map.put(getString(R.string.grid_itemActivity), null);
+			listItemArrayList.add(map);
+		} // Actualizar
 		//Generate an adapter ImageItem corresponding to the elements of a dynamic array
 		SimpleAdapter saImageItems = new SimpleAdapter(this,
 				listItemArrayList,//Data source
 				R.layout.grid_item,//XML of the item
 
 				//The child of the dynamic array corresponding to ImageItem
-				new String[]{getString(R.string.grid_itemImage ), getString(R.string.grid_itemText )},
+				new String[]{getString(R.string.grid_itemImage), getString(R.string.grid_itemText)},
 
 				//An ImageView,TextView ID in the XML file of the ImageItem
 				new int[]{R.id.grid_item_image, R.id.grid_item_txt});
@@ -198,9 +205,15 @@ public class ItemMainActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				if (!activeActivity) {
+
 					activeActivity = true;
 					HashMap<String, Object> map = listItemArrayList.get(position);
+					if ("Actualizar".equals(map.get("itemText"))) {
+						UpdateAppService u = new UpdateAppService();
 
+						u.DoUpdate(ItemMainActivity.this, "https://raw.githubusercontent.com/PomeloCode/CladdPDA/main/StockITCladd/");
+						return;
+					}
 					Intent intent = new Intent();
 					intent.setClass(ItemMainActivity.this, (Class<?>) map.get(getString(R.string.grid_itemActivity)));
 
@@ -229,16 +242,22 @@ public class ItemMainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// create
 		super.onCreate(savedInstanceState);
+
+
 		this.setContentView(R.layout.item_main);
-		BaseUrlApi = getString(R.string.GENERICENDPOINT);
-		keepScreenOn(true);
 		gridView = (GridView) findViewById(R.id.main_item_grid);
-		ChangeLayout(getResources().getConfiguration());
 		dataBaseHelper = new DataBaseHelper(ItemMainActivity.this);
 		dataBaseHelper.addDynamicConfigsDefault();
+		keepScreenOn(true);
 		checkPermission();
+		ChangeLayout(getResources().getConfiguration());
+
+		BaseUrlApi = getString(R.string.GENERICENDPOINT);
+
 		ShowPopUpOperario();
+
 	}
+
 
 	private void ChangeLayout(Configuration newConfig) {
 		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) { //The current screen is landscape

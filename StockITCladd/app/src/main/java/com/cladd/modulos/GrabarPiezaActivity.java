@@ -116,8 +116,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 	private int BcOManual = 0;// 0: Scanner o 1: Escribe codigo
 	private int GrabaYUbica = 1;// 0: Graba o 1: Graba y ubica
 
-	private int cambioPotAntena = 0;
-
 	/**
 	 * FIN Definicion Variables Controller
 	 **/
@@ -134,114 +132,19 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		InitRFIDModule();
+		InitDBConexion();
+		InitRFIDModule(this,getString(R.string.GrabarPieza));
+		InitBCModule();
+		InitSoundModule();
+		InitView();
 
 	}
 
 	@Override
-	protected void onResume() {
+	protected void onResume(){
 		super.onResume();
-		InitRFIDModule();
-		super.UHF_GetReaderProperty();
-	}
-
-	protected void InitRFIDModule() {
-		log = this;
-		if (!UHF_Init(log)) { // Failed to power on the module
-			showMsg(getString(R.string.RFID_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							GrabarPiezaActivity.this.finish();
-						}
-					});
-		} else {
-			InitBCModule();
-
-		}
-	}
-
-	protected void ConfigureRFIDModule(){
-		try {
-
-			PDASettings pda = FillPDASettings(GetPDAConfigDB(getString(R.string.GrabarPieza)),getString(R.string.GrabarPieza));
-			SetPDAConfigurations(pda);
-
-		} catch (Exception ee) {
-			Log.d("as",ee.getMessage());
-		}
-
 
 	}
-
-	protected void InitBCModule() {
-
-		if (!scanReader.open(getApplicationContext())) {
-			showMsg(getString(R.string.BC_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							GrabarPiezaActivity.this.finish();
-						}
-					});
-		}else {
-			InitSoundModule();
-		}
-
-	}
-
-	protected void InitSoundModule() {
-		IsFlushList = true;
-
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() { // The buzzer sounds
-			@Override
-			public void run() {
-				while (IsFlushList) {
-					synchronized (beep_Lock) {
-						try {
-							beep_Lock.wait();
-						} catch (InterruptedException e) {
-						}
-					}
-					if (IsFlushList) {
-						toneGenerator
-								.startTone(ToneGenerator.TONE_PROP_BEEP);
-					}
-
-				}
-			}
-		});
-
-		InitDBConexion();
-
-	}
-
-	protected void InitDBConexion() {
-
-		dataBaseHelper = new DataBaseHelper(GrabarPiezaActivity.this);
-
-		BaseUrlApi = dataBaseHelper.getDynamicConfigsData(getString(R.string.API_ENDPOINT));
-
-		GetOperarioDB();
-		ConfigureRFIDModule();
-
-		InitView();
-
-
-	}
-
-	public void GetOperarioDB(){
-
-		_Operario = new Operario();
-
-		_Operario.setLogeo(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOLOG)));
-		_Operario.setDescripcion(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIODESC)));;
-		_Operario.setHabilitaUsoTracker(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOUSOTRACKER)));
-		_Operario.setPlanta(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOPLANTA)));
-
-	}
-
-	/////other db gets
 
 	protected void InitView() {
 
@@ -343,16 +246,11 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 									   View arg1, int arg2, long arg3) {
 				int selectItem = sp_WriteTipo
 						.getSelectedItemPosition();
-				switch (selectItem) {
-					case PUNTO:
-						tipo = getString(R.string.PUNTO);
-						break;
-					case PLANO:
-						tipo = getString(R.string.PLANO);
-						break;
-					default:
-						break;
-				}
+				if(selectItem == 0)
+					tipo = getString(R.string.PUNTO);
+				if(selectItem == 1)
+					tipo = getString(R.string.PLANO);
+
 
 			}
 
@@ -432,14 +330,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		}
 	}
 
-	@Override
-	public boolean onKeyDown (int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode))
-			StartReading();
-
-		return super.onKeyDown(keyCode, event);
-	}
-
 	public void VirtualBtnKeyDown (View v) {
 
 		Button btnGrabarPieza = (Button) v;
@@ -482,11 +372,9 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 
 				in_reading = true;
 				int ret = -1;
-				if (cambioPotAntena == 0) {
 
-					ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, 0);
+				ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, _RFIDSingleRead);
 
-				}
 
 				//After reading the tag for 2 seconds, stop
 				new Thread() {
@@ -529,8 +417,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 
 				btn_GrabarPieza.setText(getString(R.string.btn_read_stop));
 				isStartPingPong = true;
-
-				GetEPC_6C();
 
 			}
 		}else
@@ -598,17 +484,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 			}
 
 		}.start();
-	}
-
-	private int GetEPC_6C() {
-
-		int ret = -1;
-		in_reading = true;
-
-		ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
-
-		return ret;
-
 	}
 
 	@Override
@@ -719,7 +594,11 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 							JSONObject dataSource = new JSONObject(resp.getString(getString(R.string.API_DATASOURCE)));
 							String id = dataSource.getString("id");
 							if (id.length() == 24)
+							{
+								UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(getString(R.string.RFID_MAXPOWER)));
+								Thread.sleep(500);
 								GrabarTag(id);
+							}
 
 						}
 					}else
@@ -914,14 +793,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		});
 	}
 
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode)) { // release the handle button
-			StopReading();
-		}
-		return super.onKeyUp(keyCode, event);
-	}
-
 	public void Clear(View v) {
 		hmList.clear();
 	}
@@ -961,10 +832,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 	 * Functions
 	 */
 
-
-
-
-
 	public void ShowPopupExitoGrabacion(String tag) {
 
 		Intent popup = new Intent(GrabarPiezaActivity.this, PopUpActivity.class);
@@ -977,7 +844,7 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 	public void GrabarTag(String hex) {
 
 		int dataLen = 0; // Length of Write Data
-		String strInput = tb_Write_WriteNSerie.getText().toString();
+		String strInput = hex;
 		strInput = String.format(strInput, 24, "0").replace(getString(R.string.str_br), new String());
 
 		if (!checkHexInput(strInput)) { // check
@@ -985,15 +852,12 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 			return;
 		}
 
-		dataLen = tb_Write_WriteNSerie.getText().length() % 4 == 0 ? tb_Write_WriteNSerie
-				.getText().length() / 4
-				: tb_Write_WriteNSerie.getText().length() / 4 + 1;
+		dataLen = hex.length() % 4 == 0 ? hex.length() / 4
+				: hex.length() / 4 + 1;
 
 		if (dataLen > 0) {
 
 			int ret = -1;
-			cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerBCtoRFWrite))));
-			if (cambioPotAntena == 0) {
 				ret = UHFReader._Tag6C.WriteEPC_MatchTID(_NowAntennaNo, hex, tb_Write_MatchTID.getText().toString(), 0);
 				if (ret != 0) {
 
@@ -1003,29 +867,27 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 
 				} else {
 
-					hideWait();
-					RestartViewGrabador();
-					ShowPopupExitoGrabacion(hex);
-					HabilitarCampo(2);
-					CLReader.Stop();
-					cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerBCtoRFRead))));
-					CLReader.Stop();
+					try {
+						CLReader.Stop();
+						Thread.sleep(500);
+						UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_MAXPOWER))));
+						Thread.sleep(500);
+						CLReader.Stop();
+						Thread.sleep(500);
+						hideWait();
+						RestartViewGrabador();
+						HabilitarCampo(2);
+						ShowPopupExitoGrabacion(hex);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 
 				}
 
 				grabando = false;
 
-			} else {
-
-				hideWait();
-				LogToExternalServer(getString(R.string.str_PDA), UNIQUEIDPDA,getString(R.string.metodo_GrabarPieza_GrabarTag),4, Calendar.getInstance().toString(), "Error configurando la potencia");
-
-				showMsg(getString(R.string.RFID_ErrorCambioPotencia), null);
-
-			}
 		}
 	}
-
 
 	// Boton grabar en View
 	public void WriteHand(View v) {
@@ -1047,11 +909,9 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		int ret = -1;
 
 		CLReader.Stop();
-		cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerBCtoRFRead))));
-		if (cambioPotAntena == 0) {
-			ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, 0);
+		UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerBCtoRFRead))));
 
-		}
+		ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, _RFIDSingleRead);
 
 		int retval = CLReader.GetReturnData(rt);
 		if (!UHF_CheckReadResult(retval)) {
@@ -1095,11 +955,12 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		int ret = -1;
 
 		CLReader.Stop();
-		cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerBCtoRFRead))));
+
+		UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.LeerTagContenedor)+getString(R.string.DB_DynamicConfig_Name_antPower))));
+
 		Delay(50);
-		if (cambioPotAntena == 0) {
-			ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, 0);
-		}
+		ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, _RFIDSingleRead);
+
 		int retval = CLReader.GetReturnData(rt);
 		if (!UHF_CheckReadResult(retval)) {
 

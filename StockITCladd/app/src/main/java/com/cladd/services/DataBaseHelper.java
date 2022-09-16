@@ -54,7 +54,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	public void addDynamicConfigsDefault() {
 
-		addDynamicConfigs("BaseConfig", "endpoint", "http://mail.cladd.com.ar:8803/TestIntegrationStockIT/");
+		addDynamicConfigs("BaseConfig", "endpoint", "http://mail.cladd.com.ar:8803/IntegrationStockIT/");
 
 	}
 

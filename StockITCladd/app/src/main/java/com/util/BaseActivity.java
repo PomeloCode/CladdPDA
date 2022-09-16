@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.os.storage.StorageManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -34,8 +35,6 @@ import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.cladd.entities.api.Operario;
 import com.cladd.entities.model.PDASettings;
 import com.cladd.entities.model.Pieza;
@@ -76,7 +75,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @SuppressLint("HandlerLeak")
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
 	
 	private Toast _MyToast = null;
 	public String BaseUrlApi;
@@ -102,6 +101,8 @@ public class BaseActivity extends Activity {
 	protected static final int MSG_USER_BEG = 0;
 
 	protected static final int MSG_RESULT_BC = MSG_USER_BEG + 2;
+	protected static final int MSG_RESULT_BEEP = MSG_USER_BEG + 10;
+
 
 	public DataBaseHelper dataBaseHelper=null;
 	public final Scanner scanReader = ScanReader.getScannerInstance();
@@ -1308,7 +1309,8 @@ public class BaseActivity extends Activity {
 					}
 
 					idString = utf8 ;
-					toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP);
+
+					sendMessage(MSG_RESULT_BEEP, null);
 					sendMessage(MSG_RESULT_BC, idString);
 
 				} else {
@@ -1326,4 +1328,17 @@ public class BaseActivity extends Activity {
 		}.start();
 	}
 
+	protected void InitBCModule() {
+
+		if (!scanReader.open(getApplicationContext())) {
+			showMsg(getString(R.string.BC_ErrorConexion),
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							finish();
+						}
+					});
+		}
+
+	}
 }

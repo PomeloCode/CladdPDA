@@ -26,6 +26,8 @@ import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+
+
 import com.cladd.entities.api.Operario;
 import com.cladd.entities.api.TrackeoPieza;
 import com.cladd.entities.model.PDASettings;
@@ -121,110 +123,24 @@ public class Estado4Activity extends UHFBaseActivity implements
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-
-		InitRFIDModule();
+		InitDBConexion();
+		InitRFIDModule(this,getString(R.string.Estado4));
+		InitBCModule();
+		InitSoundModule();
+		InitView();
 
 	}
 
 	@Override
-	protected void onResume() {
+	protected void onResume(){
 		super.onResume();
-		ReInitRFIDModule();
-		super.UHF_GetReaderProperty();
-	}
-
-	protected void ReInitRFIDModule() {
-		log = this;
-		if (!UHF_Init(log)) { // Failed to power on the module
-			showMsg(getString(R.string.RFID_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							Estado4Activity.this.finish();
-						}
-					});
-		}
-	}
-
-	protected void InitRFIDModule() {
-		log = this;
-		if (!UHF_Init(log)) { // Failed to power on the module
-			showMsg(getString(R.string.RFID_ErrorConexion),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface arg0, int arg1) {
-							Estado4Activity.this.finish();
-						}
-					});
-		} else {
-			InitSoundModule();
-
-		}
-	}
-
-	protected void ConfigureRFIDModule() {
-		try {
-
-			PDASettings pda = FillPDASettings(GetPDAConfigDB(getString(R.string.Estado4)),getString(R.string.Estado4));
-			SetPDAConfigurations(pda);
-
-		} catch (Exception ee) {
-			Log.d("as",ee.getMessage());
-		}
-
-
-	}
-
-	protected void InitSoundModule() {
-		IsFlushList = true;
-
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() { // The buzzer sounds
+		showWait("Configurando Antena");
+		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
 			@Override
 			public void run() {
-				while (IsFlushList) {
-					synchronized (beep_Lock) {
-						try {
-							beep_Lock.wait();
-						} catch (InterruptedException e) {
-						}
-					}
-					if (IsFlushList) {
-						toneGenerator
-								.startTone(ToneGenerator.TONE_PROP_BEEP);
-					}
-
-				}
+				ConfigureRFIDModule(getString(R.string.Estado4));
 			}
 		});
-
-		InitDBConexion();
-
-	}
-
-	protected void InitDBConexion() {
-
-		dataBaseHelper = new DataBaseHelper(Estado4Activity.this);
-
-		BaseUrlApi = dataBaseHelper.getDynamicConfigsData(getString(R.string.API_ENDPOINT));
-
-		GetOperarioDB();
-		ConfigureRFIDModule();
-
-		InitView();
-
-
-	}
-
-	public void GetOperarioDB() {
-
-		_Operario = new Operario();
-
-		_Operario.setLogeo(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOLOG)));
-		_Operario.setDescripcion(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIODESC)));
-		;
-		_Operario.setHabilitaUsoTracker(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOUSOTRACKER)));
-		_Operario.setPlanta(dataBaseHelper.getDynamicConfigsData(getString(R.string.OPERARIOPLANTA)));
-
 	}
 
 	public void SetAntennaConfigurations(String funcion) {
@@ -359,6 +275,7 @@ public class Estado4Activity extends UHFBaseActivity implements
 				RestartEstado4();
 
 				btn_Estado4_Operacion.setText(rb.getText().toString());
+
 				if (rb.getText().toString().equals(getString(R.string.rb_Estado4_Carga)))
 					_Operacion = 5;
 				if (rb.getText().toString().equals(getString(R.string.rb_Estado4_Descarga)))
@@ -412,14 +329,6 @@ public class Estado4Activity extends UHFBaseActivity implements
 			}
 		});
 
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode)) { // Press the handle button
-			StartReading();
-		}
-		return super.onKeyDown(keyCode, event);
 	}
 
 	public void VirtualBtnKeyDown(View v) {
@@ -730,14 +639,6 @@ public class Estado4Activity extends UHFBaseActivity implements
 					btn_Estado4.setClickable(true);
 				}
 			});
-	}
-
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (TriggerPressed(keyCode) && isStartPingPong) {
-			StopReading();
-		}
-		return super.onKeyUp(keyCode, event);
 	}
 
 	public void MostrarPopUpOperar() {

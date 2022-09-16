@@ -62,6 +62,7 @@
     <string name="RFID_BaseBandX3">3,</string>
     <string name="RFID_BaseBandX4">4,</string>
     <string name="RFID_BaseBandX5">5,</string>
+    <string name="RFID_MAXPOWER">30</string>
 
 
     <!-- BC -->
@@ -73,7 +74,7 @@
 
     <!-- Generic -->
 
-    <string name="GENERICENDPOINT">http://mail.cladd.com.ar:8803/TestIntegrationStockIT/</string>
+    <string name="GENERICENDPOINT">http://mail.cladd.com.ar:8803/IntegrationStockIT/</string>
     <string name="GENERICPOSITIVEBUTTON">OK</string>
     <string name="GENERICREQUEST">:REQUEST</string>
     <string name="GENERICPUNTOS">:</string>
@@ -86,7 +87,7 @@
     <string name="GENERICNO">NO</string>
 
 
-    <string name="waiting">waiting</string>
+    <string name="waiting">Cargando</string>
     <string name="str_busy">Espere!</string>
     <string name="str_success">Exito</string>
     <string name="str_faild">fallo</string>
