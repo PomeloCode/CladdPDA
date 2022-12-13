@@ -1,4 +1,4 @@
 {
-  "VersionName": "36.0",
-  "VersionCode": 36
+  "VersionName": "38.0",
+  "VersionCode": 38
 }
