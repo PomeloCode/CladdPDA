@@ -102,11 +102,9 @@ public class PopUpActivity extends BaseActivity {
 
         if (!exito) {
             setContentView(R.layout.popup_error);
-        }else{
+        } else {
             setContentView(R.layout.popup_exito);
         }
-
-        getActionBar().hide();
 
         BindViews();
     }

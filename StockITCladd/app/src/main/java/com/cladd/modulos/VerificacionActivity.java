@@ -67,7 +67,7 @@ public class VerificacionActivity extends UHFBaseActivity implements
 	private EditText et_Verificacion_Nro = null;
 	private View v_editContainer = null;
 	private ListView listView = null;
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView tv_Verificacion_Leidos = null;
 	private TextView tv_Verificacion_Asignados = null;
 	private TextView tv_Verificacion_Cargados = null;
@@ -106,7 +106,7 @@ public class VerificacionActivity extends UHFBaseActivity implements
 	/* Logging */
 
 	private boolean llamo = false;
-	private int cambioPotAntena = 0;
+
 	private long timerBtnOperacion = 0;
 	private long timerBtnLeer = 0;
 
@@ -127,7 +127,6 @@ public class VerificacionActivity extends UHFBaseActivity implements
 
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.Verificacion));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
@@ -137,23 +136,13 @@ public class VerificacionActivity extends UHFBaseActivity implements
 	@Override
 	protected void onResume(){
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.Verificacion));
-			}
-		});
+
+		StopReading();
 	}
 
 	public void SetAntennaConfigurations(String funcion) {
 
-		SetBaseBand("4", "4", "1", "0", "false", "false");
-		cambioPotAntena = UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerTrack))));
-
-		if (cambioPotAntena != 0)
-			showMsg(getString(R.string.RFID_ErrorCambioPotencia));
-
+		ConfigureRFIDModule(getString(R.string.Verificacion));
 
 	}
 
@@ -161,24 +150,12 @@ public class VerificacionActivity extends UHFBaseActivity implements
 
 		this.setContentView(R.layout.verificacion);
 
-		showCustomBar(getString(R.string.tv_Verificacion_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back();
-					}
-				},
-				null
-		);
-
 		BindViews();
 	}
 
 	protected void BindViews() {
 
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+		BindToolBar();
 		v_editContainer = findViewById(R.id.v_editContainer);
 		et_Verificacion_Nro = findViewById(R.id.et_Verificacion_Nro);
 		listView = findViewById(R.id.lv_Main);
@@ -198,8 +175,21 @@ public class VerificacionActivity extends UHFBaseActivity implements
 
 	protected void DisplayData() {
 
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
-
+		SetToolBar(
+				getString(R.string.tv_Verificacion_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 		v_editContainer.setBackground(getDrawable(R.drawable.lupa));
 
 	}
@@ -238,7 +228,7 @@ public class VerificacionActivity extends UHFBaseActivity implements
 			@Override
 			public void onClick(View view) {
 				if (Asignados != 0) {
-					cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerRead))));
+					ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
 					RestartVerificacion();
 				} else {
 					View currentFocus = getCurrentFocus();
@@ -320,9 +310,7 @@ public class VerificacionActivity extends UHFBaseActivity implements
 
 			in_reading = true;
 			int ret = -1;
-			if (cambioPotAntena == 0) {
-				ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
-			}
+			ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
 
 			int retval = CLReader.GetReturnData(new String());
 			if (!UHF_CheckReadResult(retval)) {

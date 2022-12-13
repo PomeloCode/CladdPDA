@@ -27,7 +27,6 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -284,7 +283,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 	}
-
+/*
 	public static boolean SetBaseBand(String baseBand, String QValue, String session, String flag, String tagFocus, String FastID) {
 		//(0: Flag A
 		// 1: Flag B
@@ -327,10 +326,11 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 			return false;
 		}
 	}
-
+*/
 	public HashMap<String,String> GetPDAConfigDB(String module)
 	{
-		return dataBaseHelper.getDynamicConfigsByTypeAndName(getString(R.string.DB_DynamicConfig_Type_PDAConfig),module);
+		HashMap<String, String> i= dataBaseHelper.getDynamicConfigsByTypeAndName(getString(R.string.DB_DynamicConfig_Type_PDAConfig),module);
+		return i;
 	}
 
 	public PDASettings FillPDASettings(HashMap<String, String> pdaConfig,String metodo) {
@@ -518,7 +518,7 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 
 	protected void InitRFIDModule(IAsynchronousMessage log,String module) {
 
-		showWait("Configurando Antena");
+
 		if (!UHF_Init(log)) { // Failed to power on the module
 			showMsg(getString(R.string.RFID_ErrorConexion),
 					new DialogInterface.OnClickListener() {
@@ -568,8 +568,10 @@ public class UHFBaseActivity extends BaseActivity implements IAsynchronousMessag
 	}
 
 	protected void ConfigureRFIDModule(String module){
-		try {
 
+		try {
+			if(module.equals(getString(R.string.Finder)))
+				module = getString(R.string.FinderModo1);
 			PDASettings pda = FillPDASettings(GetPDAConfigDB(module),module);
 			SetPDAConfigurations(pda);
 			hideWait();

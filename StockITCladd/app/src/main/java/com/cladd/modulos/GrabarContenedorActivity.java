@@ -57,7 +57,7 @@ import retrofit2.Response;
 public class GrabarContenedorActivity extends UHFBaseActivity implements
 		IAsynchronousMessage {
 
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView tv_GrabarContenedor_TagAGrabar = null;
 	private EditText et_GrabarContenedor_Contenedor = null;
 	private Button btn_GrabarContenedor = null;
@@ -68,12 +68,10 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 	private final int MSG_RESULT_RFID = MSG_USER_BEG + 1; // constant
 	private static final int MSG_RESULT_CHECK = MSG_USER_BEG + 2;
 
-	private int cambioPotAntena = 0;
 
 	/**
-	 *  Controller
+	 * Controller
 	 */ // Controller
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// create
@@ -84,45 +82,28 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.GrabarContenedor));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
 	}
 
 	@Override
-	protected void onResume(){
+	protected void onResume() {
+
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.GrabarContenedor));
-			}
-		});
+		StopReading();
 	}
 
 	protected void InitView() {
 
 		this.setContentView(R.layout.grabarcontenedor);
 
-
-		showCustomBar(getString(R.string.tv_GrabarContenedor_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back(v);
-					}
-				},
-				null
-		);
-
 		BindViews();
 	}
 
-	protected void BindViews(){
+	protected void BindViews() {
+
+		BindToolBar();
 
 		// Visor de tag a grabar (TID)
 		tv_GrabarContenedor_TagAGrabar = findViewById(R.id.tv_GrabarContenedor_TagAGrabar);
@@ -130,7 +111,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 		et_GrabarContenedor_Contenedor = findViewById(R.id.et_GrabarContenedor_Contenedor);
 		// boton Grabar
 		btn_GrabarContenedor = findViewById(R.id.btn_GrabarContenedor);
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+
 
 		InitListeners();
 
@@ -139,7 +120,21 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 	}
 
 	protected void DisplayData() {
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
+		SetToolBar(
+				getString(R.string.tv_GrabarContenedor_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 	}
 
 	protected void InitListeners() {
@@ -157,7 +152,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 	}
 
-	public void VirtualBtnKeyDown (View v) {
+	public void VirtualBtnKeyDown(View v) {
 
 		Button btnGrabar = (Button) v;
 
@@ -165,15 +160,13 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 		if (controlText.equals(getString(R.string.btn_GrabarContenedor_Grabar))) {
 			StartReading();
-		}
-		else
+		} else
 			StopReading();
 
 	}
 
-	public void StartReading () {
-		if (!et_GrabarContenedor_Contenedor.getText().toString().equals(new String()))
-		{
+	public void StartReading() {
+		if (!et_GrabarContenedor_Contenedor.getText().toString().equals(new String())) {
 			if (!procesando) {
 
 				procesando = true;
@@ -184,17 +177,14 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 				int ret = -1;
 
-				UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerWriteContainerRead))));
+				ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
 
-				if (cambioPotAntena == 0) {
 
-					GetEPCTID();
+				GetEPCTID();
 
-				}
 				StopperTimer();
 			}
-		}
-		else
+		} else
 			showMsg(getString(R.string.error_GrabarContenedor_Contenedor_Vacio));
 	}
 
@@ -258,7 +248,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 			}
 
 		} catch (Exception ex) {
-			Log.d(new String(),ex.getMessage());
+			Log.d(new String(), ex.getMessage());
 		}
 
 	}
@@ -303,7 +293,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 					}
 					*/
 					if (response.isSuccessful()) {
-						String b=response.body().string().replace('"',' ').trim().toString();
+						String b = response.body().string().replace('"', ' ').trim().toString();
 						if (b.length() == 24)
 							GrabarTag(b);
 						else {
@@ -311,7 +301,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 						}
 					}
 				} catch (Exception ex) {
-					LogToExternalServer(getString(R.string.str_PDA), UNIQUEIDPDA,getString(R.string.API_GrabarContenedor_Nombre), 4, Calendar.getInstance().toString(), ex.getMessage());
+					LogToExternalServer(getString(R.string.str_PDA), UNIQUEIDPDA, getString(R.string.API_GrabarContenedor_Nombre), 4, Calendar.getInstance().toString(), ex.getMessage());
 					showMsg(getString(R.string.error_GrabarContenedor_ApiDevolvioRaro), null);
 				}
 				hideWait();
@@ -320,7 +310,7 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 			@Override
 			public void onFailure(Call<ResponseBody> call, Throwable t) {
 				procesando = false;
-				LogToExternalServer(getString(R.string.str_PDA), UNIQUEIDPDA,"getDataAGrabar", 4, Calendar.getInstance().toString(), t.getMessage());
+				LogToExternalServer(getString(R.string.str_PDA), UNIQUEIDPDA, "getDataAGrabar", 4, Calendar.getInstance().toString(), t.getMessage());
 				btn_GrabarContenedor.setEnabled(true);
 				showMsg(t.getMessage());
 				hideWait();
@@ -328,9 +318,9 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 		});
 	}
 
-	protected List<String> GetReqKeysList(){
+	protected List<String> GetReqKeysList() {
 
-		List<String> list= new ArrayList<>();
+		List<String> list = new ArrayList<>();
 
 		list.add(getString(R.string.RFID_ErrorGrabacion));
 
@@ -338,9 +328,9 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 	}
 
-	protected List<String> GetReqValuesList(String contenedor){
+	protected List<String> GetReqValuesList(String contenedor) {
 
-		List<String> list= new ArrayList<>();
+		List<String> list = new ArrayList<>();
 
 		list.add(contenedor);
 
@@ -382,15 +372,15 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 
 		//RF=1
 		if (rfobc == 1) {
-			procesando=false;
+			procesando = false;
 			if (tagid.equals(new String())) {
 				hideWait();
 				showMsg(getString(R.string.RFID_ErrorLectura));
 			}
 		}
 
-		if (!tagid.equals(new String())){
-			procesando=false;
+		if (!tagid.equals(new String())) {
+			procesando = false;
 			showWait(getString(R.string.waiting));
 			getDataAGrabar(barcodeid);
 		}
@@ -404,23 +394,22 @@ public class GrabarContenedorActivity extends UHFBaseActivity implements
 		if (dataLen > 0) {
 
 			int ret = -1;
-			cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, 33);
-			if (cambioPotAntena == 0) {
-				ret = UHFReader._Tag6C.WriteEPC_MatchTID(_NowAntennaNo, hex, tv_GrabarContenedor_TagAGrabar.getText().toString(), 0);
-				if (ret != 0) {
-					hideWait();
-					showMsg(getString(R.string.RFID_ErrorGrabacion));
-				} else {
-					hideWait();
-					RestartViewGrabador();
-					showMsg("Se grabo Con exito: " + hex);
-				}
+			UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(getString(R.string.RFID_MAXPOWER)));
+			ret = UHFReader._Tag6C.WriteEPC_MatchTID(_NowAntennaNo, hex, tv_GrabarContenedor_TagAGrabar.getText().toString(), 0);
+			if (ret != 0) {
+				hideWait();
+				showMsg(getString(R.string.RFID_ErrorGrabacion));
 			} else {
 				hideWait();
-				showMsg(getString(R.string.RFID_ErrorCambioPotencia), null);
+				RestartViewGrabador();
+				showMsg("Se grabo Con exito: " + hex);
 			}
+		} else {
+			hideWait();
+			showMsg(getString(R.string.RFID_ErrorCambioPotencia), null);
 		}
 	}
+
 
 	public void StopReading() {
 

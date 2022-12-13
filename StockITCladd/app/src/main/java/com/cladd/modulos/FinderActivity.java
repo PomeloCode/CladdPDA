@@ -2,6 +2,7 @@ package com.cladd.modulos;
 
 import static java.lang.Thread.sleep;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -56,7 +57,7 @@ public class FinderActivity extends UHFBaseActivity implements
 	 * INICIO Definicion de elementos de la vista
 	 **/
 
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView et_Finder_Nro = null;
 	private View v_editContainer = null;
 	private ListView listView = null; // Data list object
@@ -101,7 +102,6 @@ public class FinderActivity extends UHFBaseActivity implements
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.Finder));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
@@ -109,15 +109,12 @@ public class FinderActivity extends UHFBaseActivity implements
 	}
 
 	@Override
-	protected void onResume(){
+	protected void onResume() {
+
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.Finder));
-			}
-		});
+
+		StopReading();
+
 	}
 
 
@@ -125,25 +122,13 @@ public class FinderActivity extends UHFBaseActivity implements
 
 		this.setContentView(R.layout.finder);
 
-
-		showCustomBar(getString(R.string.tv_Finder_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back(v);
-					}
-				},
-				null
-		);
-
 		BindViews();
 	}
 
 	protected void BindViews() {
 
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+		BindToolBar();
+
 		v_editContainer = findViewById(R.id.v_editContainer);
 		et_Finder_Nro = findViewById(R.id.et_Finder_Nro);
 		listView = findViewById(R.id.lv_Main);
@@ -157,12 +142,26 @@ public class FinderActivity extends UHFBaseActivity implements
 	}
 
 	protected void DisplayData() {
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
+		SetToolBar(
+				getString(R.string.tv_Finder_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
+
 		String extra = getIntent().getStringExtra("productos");
 
 		Contenedor productos = new Gson().fromJson(extra, Contenedor.class);
 
-		SetBaseBand("1", "4", "1", "0", "true", "false");
 		if (productos.getProductos().size() > 0) {
 			GetProductsByCriterio(productos.getProductos());
 			et_Finder_Nro.setText(productos.getProductos().get(0).getSector());
@@ -230,21 +229,6 @@ public class FinderActivity extends UHFBaseActivity implements
 
 		if (controlText.equals(getString(R.string.btn_Finder_Leer))) {
 			StartReading();
-
-			new Thread() {
-				@Override
-				public void run() {
-					new Timer().schedule(
-							new TimerTask() {
-								@Override
-								public void run() {
-									StopReading();
-								}
-							},
-							2000
-					);
-				}
-			}.start();
 		} else
 			StopReading();
 
@@ -272,7 +256,7 @@ public class FinderActivity extends UHFBaseActivity implements
 		int ret = -1;
 		in_reading = true;
 
-		ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
+		ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDInventoryRead);
 
 		return ret;
 
@@ -290,11 +274,7 @@ public class FinderActivity extends UHFBaseActivity implements
 						try {
 							CLReader.Stop();
 							Thread.sleep(20);
-							SetBaseBand("3", "4", "1", "2", "false", "false");
-							//UHFReader.getUHFInstance().SetBaseBandX("1,00000010");
-							Thread.sleep(20);
-							//UHFReader._Config.SetEPCBaseBandParam(3, 4, 0, 2);
-							Thread.sleep(20);
+							ConfigureRFIDModule(getString(R.string.FinderModo2));
 							GetEPC_6C();
 
 						} catch (Exception ex) {
@@ -336,7 +316,7 @@ public class FinderActivity extends UHFBaseActivity implements
 	public Contenedor GetProductsByCriterio(List<Pieza> prods) {
 		showWait(getString(R.string.waiting));
 
-		UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerFinderSearch))));
+		//ConfigureRFIDModule(getString(R.string.FinderModo1));
 		containerGlobal.setProductos(prods);
 		List<String> hexList = new ArrayList<>();
 		for (int i = 0; i < prods.size(); i++)
@@ -359,7 +339,8 @@ public class FinderActivity extends UHFBaseActivity implements
 	public Contenedor GetProductsByCriterioTodos(List<List<Pieza>> prods) {
 		showWait(getString(R.string.waiting));
 
-		UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerFinderSearch))));
+		//ConfigureRFIDModule(getString(R.string.FinderModo1));
+
 		List<String> hexList = new ArrayList<>();
 		List<Pieza> produc = new ArrayList<>();
 		for (int j = 0; j < prods.size(); j++) {

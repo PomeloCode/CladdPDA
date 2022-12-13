@@ -11,6 +11,8 @@
 
     <string name="LeerTagContenedor">LeerTagContenedor</string>
 
+    <string name="DB_DynamicConfig_Name_UpdateAppUrl">UpdateAppUrl</string>
+    <string name="DB_DynamicConfig_Name_CheckUpdateAppUrl">CheckUpdateAppUrl</string>
     <string name="DB_DynamicConfig_Name_baseband">baseband</string>
     <string name="DB_DynamicConfig_Name_qValue">qValue</string>
     <string name="DB_DynamicConfig_Name_session">session</string>
@@ -44,18 +46,6 @@
     <string name="RFID_ErrorLectura">Error de lectura del modulo de RFID</string>
     <string name="RFID_ErrorCambioPotencia">Error Cambiando la potencia el equipo podria tener problemas de distancia</string>
     <string name="RFID_ErrorGrabacion">Error en la grabacion, Intente nuevamente</string>
-    <string name="RFID_AntPowerVerDetallePieza">AntPowerVerDetallePieza</string>
-    <string name="RFID_AntPowerBCtoRFRead">AntPowerBCtoRFRead</string>
-    <string name="RFID_AntPowerBCtoRFWrite">AntPowerBCtoRFWrite</string>
-    <string name="RFID_AntPowerFinderRead">AntPowerFinderRead</string>
-    <string name="RFID_AntPowerFinderSearch">AntPowerFinderSearch</string>
-    <string name="RFID_AntPowerTrackerRead">AntPowerTrackerRead</string>
-    <string name="RFID_AntPowerTrackerTrack">AntPowerTrackerTrack</string>
-    <string name="RFID_AntPowerVerificacionRead">AntPowerVerificacionRead</string>
-    <string name="RFID_AntPowerVerificacionTrack">AntPowerVerificacionTrack</string>
-    <string name="RFID_AntPowerEstado4Read">AntPowerEstado4Read</string>
-    <string name="RFID_AntPowerEstado4Track">AntPowerEstado4Track</string>
-    <string name="RFID_AntPowerWriteContainerRead">AntPowerWriteContainerRead</string>
     <string name="RFID_VirginStartTag">E280</string>
     <string name="RFID_BaseBandX1">1,</string>
     <string name="RFID_BaseBandX2">2,</string>
@@ -74,7 +64,12 @@
 
     <!-- Generic -->
 
-    <string name="GENERICENDPOINT">http://mail.cladd.com.ar:8803/IntegrationStockIT/</string>
+    <!--
+        <string name="GENERICENDPOINT">http://RFIDSERVER/IntegrationStockIT/</string>
+        <string name="GENERICENDPOINT">http://mail.cladd.com.ar:8803/TestIntegrationStockIT/</string>
+    -->
+        <string name="GENERICENDPOINT">http://mail.cladd.com.ar:8803/IntegrationStockIT/</string>
+
     <string name="GENERICPOSITIVEBUTTON">OK</string>
     <string name="GENERICREQUEST">:REQUEST</string>
     <string name="GENERICPUNTOS">:</string>
@@ -267,6 +262,8 @@
 
     <!-- Finder -->
 
+    <string name="FinderModo1">FinderModo1</string>
+    <string name="FinderModo2">FinderModo2</string>
     <string name="tv_Finder_Title">Finder</string>
     <string name="tv_Finder_Sector">Sector</string>
     <string name="btn_Finder_Leer">Leer</string>

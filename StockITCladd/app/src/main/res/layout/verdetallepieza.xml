@@ -2,37 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:layout_margin="2dp"
 	android:orientation="vertical">
-	<LinearLayout
+
+	<include
+		android:id="@+id/tool_bar"
+		layout="@layout/custom_action_bar"
+		android:layout_height="50dp"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="10dp"
-		android:orientation="vertical"
-		>
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
+		/>
 
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/tv_UsuarioLogueado"
-				android:layout_marginRight="20dp"/>
-			<TextView
-				android:id="@+id/tv_UsuarioLogueado"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				/>
-
-
-		</LinearLayout>
-
-
-
-	</LinearLayout>
 
 	<View
 		android:layout_width="match_parent"
@@ -91,20 +69,21 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:text="@string/tv_VerDetallePieza_Tipo_Manual"
-			android:layout_weight="0.12"
+			android:layout_weight="0.08"
 			/>
+
 		<Spinner
 			android:id="@+id/sp_WriteTipo"
 			android:layout_width="0dp"
-			android:layout_weight="0.23"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="0.31"
 			android:entries="@array/Array_TipoProducto"
 			android:prompt="@string/Clear_Tags"
-			android:textSize="18sp"/>
+			android:textSize="18sp" />
 
 		<TextView
 			android:layout_width="0dp"
-			android:layout_weight="0.15"
+			android:layout_weight="0.1"
 			android:layout_height="wrap_content"
 			android:text="@string/tv_VerDetallePieza_NSerie_Manual"
 			android:layout_gravity="center"

@@ -72,7 +72,7 @@ public class Estado4Activity extends UHFBaseActivity implements
 	private EditText et_Estado4_Nro = null;
 	private View v_editContainer = null;
 	private ListView listView = null;
-	private TextView tv_UsuarioLogueado = null;
+
 	private Button btn_Estado4_Operacion = null;
 	private Button btn_Estado4 = null;
 
@@ -105,7 +105,6 @@ public class Estado4Activity extends UHFBaseActivity implements
 	/* Logging */
 
 	private boolean llamo = false;
-	private int cambioPotAntena = 0;
 	private long timerBtnOperacion = 0;
 	private long timerBtnLeer = 0;
 
@@ -124,7 +123,6 @@ public class Estado4Activity extends UHFBaseActivity implements
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.Estado4));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
@@ -134,23 +132,8 @@ public class Estado4Activity extends UHFBaseActivity implements
 	@Override
 	protected void onResume(){
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.Estado4));
-			}
-		});
-	}
 
-	public void SetAntennaConfigurations(String funcion) {
-
-		SetBaseBand("4", "4", "1", "0", "false", "false");
-		cambioPotAntena = UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerTrack))));
-
-		if (cambioPotAntena != 0)
-			showMsg(getString(R.string.RFID_ErrorCambioPotencia));
-
+		StopReading();
 
 	}
 
@@ -158,28 +141,17 @@ public class Estado4Activity extends UHFBaseActivity implements
 
 		this.setContentView(R.layout.estado4);
 
-		showCustomBar(getString(R.string.tv_Estado4_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back();
-					}
-				},
-				null
-		);
-
 		BindViews();
 	}
 
 	protected void BindViews() {
+		BindToolBar();
 
 		rg_Estado4 = findViewById(R.id.rg_Estado4);
 		rb_Estado4_Carga = findViewById(R.id.rb_Estado4_Carga);
 		rb_Estado4_Descarga = findViewById(R.id.rb_Estado4_Descarga);
 		rb_Estado4_Trasbordo = findViewById(R.id.rb_Estado4_Trasbordo);
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+
 
 		v_editContainer = findViewById(R.id.v_editContainer);
 
@@ -201,7 +173,21 @@ public class Estado4Activity extends UHFBaseActivity implements
 
 	protected void DisplayData() {
 
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
+		SetToolBar(
+				getString(R.string.tv_Estado4_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 
 		v_editContainer.setBackground(getDrawable(R.drawable.lupa));
 
@@ -241,13 +227,8 @@ public class Estado4Activity extends UHFBaseActivity implements
 			@Override
 			public void onClick(View view) {
 				if (!et_Estado4_Nro.isFocusable()) {
-					while (cambioPotAntena != 0) {
-						CLReader.Stop();
 
-						SetBaseBand("3", "0", "3", "0", "false", "false");
-						cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerEstado4Read))));
-					}
-					cambioPotAntena = -1;
+					ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
 
 					RestartEstado4();
 				} else {
@@ -265,13 +246,9 @@ public class Estado4Activity extends UHFBaseActivity implements
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// checkedId is the RadioButton selected
 				RadioButton rb = findViewById(checkedId);
-				while (cambioPotAntena != 0) {
-					CLReader.Stop();
 
-					SetBaseBand("3", "0", "3", "0", "false", "false");
-					cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerEstado4Read))));
-				}
-				cambioPotAntena = -1;
+				ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
+
 				RestartEstado4();
 
 				btn_Estado4_Operacion.setText(rb.getText().toString());
@@ -355,9 +332,7 @@ public class Estado4Activity extends UHFBaseActivity implements
 
 			in_reading = true;
 			int ret = -1;
-			if (cambioPotAntena == 0) {
-				ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
-			}
+			ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
 
 			int retval = CLReader.GetReturnData(new String());
 			if (!UHF_CheckReadResult(retval)) {
@@ -572,7 +547,7 @@ public class Estado4Activity extends UHFBaseActivity implements
 			Numero = et_Estado4_Nro.getText().toString();
 			LockInputContainer();
 
-			SetBaseBand("3", "4", "1", "0", "true", "false");
+			ConfigureRFIDModule(getString(R.string.Estado4));
 		}
 	}
 

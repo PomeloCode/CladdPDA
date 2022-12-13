@@ -67,7 +67,7 @@ public class InventarioActivity extends UHFBaseActivity implements
 
 	private ListView listView = null;
 	private EditText et_Inventario_Titulo = null;
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView lb_TagCount = null;
 	private Button btn_Inventario = null;
 	private Button btn_Inventario_Operacion = null;
@@ -95,7 +95,7 @@ public class InventarioActivity extends UHFBaseActivity implements
 
 	/* Logging */
 
-	private int cambioPotAntena = 0;
+
 	private long timerBtnOperacion = 0;
 	private long timerBtnLeer = 0;
 
@@ -115,23 +115,22 @@ public class InventarioActivity extends UHFBaseActivity implements
 
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.Inventario));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
 
 	}
-
+	@Override
+	protected void InitDBConexion(){
+		super.InitDBConexion();
+		GetDataDB();
+	}
 	@Override
 	protected void onResume(){
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.Inventario));
-			}
-		});
+
+		StopReading();
+
 	}
 
 	public void GetDataDB() {
@@ -140,40 +139,17 @@ public class InventarioActivity extends UHFBaseActivity implements
 		ProductosEnBase = dataBaseHelper.getProductosList();
 	}
 
-	public void SetAntennaConfigurations(String funcion) {
-
-		SetBaseBand("4", "4", "1", "0", "false", "false");
-		cambioPotAntena = UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerTrack))));
-
-		if (cambioPotAntena != 0)
-			showMsg(getString(R.string.RFID_ErrorCambioPotencia));
-
-
-	}
-
 	protected void InitView() {
 
 		this.setContentView(R.layout.inventario);
-
-		showCustomBar(getString(R.string.tv_Inventario_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back();
-					}
-				},
-				null
-		);
 
 		BindViews();
 	}
 
 	protected void BindViews() {
 
+		BindToolBar();
 		listView = (ListView) this.findViewById(R.id.lv_Main);
-		tv_UsuarioLogueado = (TextView) findViewById(R.id.tv_UsuarioLogueado);
 		lb_TagCount = (TextView) findViewById(R.id.lb_TagCount);
 		btn_Inventario = (Button) findViewById(R.id.btn_Inventario);
 		et_Inventario_Titulo = (EditText) findViewById(R.id.et_Inventario_Titulo);
@@ -188,8 +164,21 @@ public class InventarioActivity extends UHFBaseActivity implements
 
 	protected void DisplayData() {
 
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
-
+		SetToolBar(
+				getString(R.string.tv_Inventario_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 		btn_Inventario.setText(getString(R.string.btn_Inventario));
 
 		Date date = new Date();

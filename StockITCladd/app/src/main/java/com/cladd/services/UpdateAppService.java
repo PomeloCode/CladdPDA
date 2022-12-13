@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.cladd.entities.api.AppFileData;
+import com.hopeland.pda.example.R;
 import com.util.BaseActivity;
 
 import okhttp3.OkHttpClient;
@@ -51,14 +53,12 @@ public class UpdateAppService  extends BaseActivity {
                     return;
                 AppFileData server = response.body();
                 AppFileData local = GetLocalAppInfo();
-
-        apkFileUrl = "https://github.com/PomeloCode/CladdPDA/blob/main/apk/stockit" +
-                server.getVersionName()
-                + ".apk?raw=true";
-
-                if (!(server.getVersionName().equals(local.getVersionName()) && server.getVersionCode() == local.getVersionCode()))
+                dataBaseHelper= new DataBaseHelper(_context);
+                apkFileUrl = dataBaseHelper.getDynamicConfigsData(_context.getString(R.string.DB_DynamicConfig_Name_UpdateAppUrl));
+                if (!(server.getVersionName().equals(local.getVersionName()) && server.getVersionCode() == local.getVersionCode())) {
                     ShowDownloadAppDialog();
-
+                }else
+                    ShowNoUpdate();
             }
 
             @Override
@@ -79,6 +79,30 @@ public class UpdateAppService  extends BaseActivity {
                     }
                 })
                 .setCancelable(false).create();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dialog.show();
+
+            }
+        });
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dataBaseHelper = new DataBaseHelper(UpdateAppService.this);
+    }
+    private void ShowNoUpdate() {
+        AlertDialog dialog = new AlertDialog.Builder(this._context)
+                .setTitle("Todo Ok!")
+                .setMessage("No hay actualizaciones nuevas")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setCancelable(true).create();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

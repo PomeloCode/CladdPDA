@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -68,7 +69,7 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 
 	/** INICIO Definicion de elementos de la vista **/
 
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView tv_VerDetallePieza_Tipo = null;
 	private TextView tv_VerDetallePieza_Pieza = null;
 	private TextView tv_VerDetallePieza_DepSec = null;
@@ -133,9 +134,7 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 	@Override
 	protected void onResume(){
 		super.onResume();
-		showWait("Configurando Antena");
-		InitRFIDModule(this,getString(R.string.VerDetallePieza));
-
+		StopReading();
 
 	}
 
@@ -143,27 +142,19 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 
 		this.setContentView(R.layout.verdetallepieza);
 
-		showCustomBar(getString(R.string.tv_VerDetallePieza_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back(v);
-					}
-				},
-				null
-		);
+
 
 		BindViews();
 	}
 
 	protected void BindViews(){
 
+		BindToolBar();
+
 		// btn Leer etiqueta
 		btn_VerDetallePieza = findViewById(R.id.btn_VerDetallePieza);
 		// TextView campo Operario logeado
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+
 		// TextView campo Tipo Producto
 		tv_VerDetallePieza_Tipo = findViewById(R.id.tv_VerDetallePieza_Tipo);
 		// TextView campo nserie
@@ -206,7 +197,21 @@ public class VerDetallePiezaActivity extends UHFBaseActivity implements
 	}
 
 	protected void DisplayData() {
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
+		SetToolBar(
+				getString(R.string.tv_VerDetallePieza_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 		tipo = getString(R.string.PUNTO);
 	}
 

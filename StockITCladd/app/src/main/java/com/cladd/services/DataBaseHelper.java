@@ -54,6 +54,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	public void addDynamicConfigsDefault() {
 
+		//addDynamicConfigs("BaseConfig", "endpoint", "http://mail.cladd.com.ar:8803/TestIntegrationStockIT/");
+		//addDynamicConfigs("BaseConfig", "endpoint", "http://RFIDSERVER/IntegrationStockIT/");
 		addDynamicConfigs("BaseConfig", "endpoint", "http://mail.cladd.com.ar:8803/IntegrationStockIT/");
 
 	}
@@ -188,7 +190,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		int i = 0;
 		while (cursor.getCount() > i) {
 
-			String s1 = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+			String s1 = cursor.getString(cursor.getColumnIndexOrThrow("name")).toLowerCase(Locale.ROOT);
 			String s2 = cursor.getString(cursor.getColumnIndexOrThrow("value"));
 			baseConfigList.put(s1, s2);
 			i++;
@@ -239,8 +241,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	public String getDynamicConfigsData(String name) {
 		DynamicConfigs = getDynamicConfigs();
 		String response;
-		if (DynamicConfigs.containsKey(name))
-			response = DynamicConfigs.get(name);
+		if (DynamicConfigs.containsKey(name.toLowerCase(Locale.ROOT)))
+			response = DynamicConfigs.get(name.toLowerCase(Locale.ROOT));
 		else
 			response = "error";
 

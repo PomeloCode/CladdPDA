@@ -76,11 +76,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @SuppressLint("HandlerLeak")
 public class BaseActivity extends AppCompatActivity {
-	
+
 	private Toast _MyToast = null;
 	public String BaseUrlApi;
 	public String UNIQUEIDPDA;
 	public Operario _Operario;
+	public Button actionBarLeft = null;
+	public Button actionBarRight = null;
+	public TextView actionBarTitle = null;
+	public TextView actionBarSubTitle = null;
 	public SimpleAdapter sa = null;
 
 	public DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -556,143 +560,9 @@ public class BaseActivity extends AppCompatActivity {
 	 * Custom title bar related
 	 ***************************************************************/
 
-	/**
-	 * 显示自定义的ActionBar
-	 *
-	 * @param title
-	 * @param subTitle
-	 * @param left
-	 * @param right
-	 * @param left_icon
-	 * @param right_icon
-	 * @param leftListen
-	 * @param rightListen
-	 * @return Success or failure
-	 */
-	@SuppressLint("InflateParams")
-	protected boolean showCustomBar(String title, String subTitle, String left,
-									String right, int left_icon, int right_icon,
-									View.OnClickListener leftListen, View.OnClickListener rightListen) {
 
-		ActionBar actionBar = getActionBar();
-		if (null == actionBar) {
-			return false;
-		}
 
-		actionBar.setTitle(new String());
-		actionBar.setDisplayShowHomeEnabled(false);
 
-		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-		View custActionBar = inflater.inflate(R.layout.custom_action_bar, null);
-		TextView tvTitle = custActionBar
-				.findViewById(R.id.actionBarTitle);
-		TextView tvSubTitle = custActionBar
-				.findViewById(R.id.actionBarSubTitle);
-		Button btnLeft = custActionBar
-				.findViewById(R.id.actionBarLeft);
-		Button btnRight = custActionBar
-				.findViewById(R.id.actionBarRight);
-
-		tvTitle.setText(title);
-		if (subTitle != null) {
-			tvSubTitle.setText(subTitle);
-		} else {
-			tvSubTitle.setVisibility(View.GONE);
-		}
-
-		if (left != null) {
-			btnLeft.setText(new String() + left);
-		} else {
-			btnLeft.setText(new String());
-		}
-		btnLeft.setOnClickListener(leftListen);
-		if (left_icon > 0) {
-			Drawable drawable = getResources().getDrawable(left_icon);
-			drawable.setBounds(0, 0, drawable.getMinimumWidth(),
-					drawable.getMinimumHeight());
-			btnLeft.setCompoundDrawables(drawable, null, null, null);
-		}
-
-		if (right != null) {
-			btnRight.setText(right + new String());
-		} else {
-			btnRight.setText(new String());
-		}
-		btnRight.setOnClickListener(rightListen);
-		if (right_icon > 0) {
-			Drawable drawable = getResources().getDrawable(right_icon);
-			drawable.setBounds(0, 0, drawable.getMinimumWidth(),
-					drawable.getMinimumHeight());
-			btnRight.setCompoundDrawables(null, null, drawable, null);
-		}
-
-		if (null == left && left_icon <= 0) {
-			btnLeft.setVisibility(View.GONE);
-		}
-
-		if (null == right && right_icon <= 0) {
-			btnRight.setVisibility(View.GONE);
-		}
-
-		ActionBar.LayoutParams lp = new ActionBar.LayoutParams(
-				ActionBar.LayoutParams.MATCH_PARENT,
-				ActionBar.LayoutParams.MATCH_PARENT);
-		actionBar.setDisplayShowCustomEnabled(true);
-		actionBar.setCustomView(custActionBar, lp);
-
-		return true;
-	}
-
-	/**
-	 * Display custom actionbar
-	 *
-	 * @param title
-	 * @param left
-	 * @param right
-	 * @param left_icon
-	 * @param right_icon
-	 * @param leftListen
-	 * @param rightListen
-	 * @return Success or failure
-	 */
-	protected boolean showCustomBar(String title, String left, String right,
-									int left_icon, int right_icon, View.OnClickListener leftListen,
-									View.OnClickListener rightListen) {
-		return showCustomBar(title, null, left, right, left_icon, right_icon,
-				leftListen, rightListen);
-	}
-
-	/**
-	 * Display automatic actionbar
-	 *
-	 * @param title
-	 * @param left
-	 * @param right        * @param leftListen
-	 * @param rightListen
-	 * @return Success or failure
-	 */
-	protected boolean showCustomBar(String title, String left, String right,
-									View.OnClickListener leftListen, View.OnClickListener rightListen) {
-		return showCustomBar(title, left, right, 0, 0, leftListen, rightListen);
-	}
-
-	/**
-	 * Display automatic actionbar
-	 *
-	 * @param title
-	 * @param subTitle
-	 * @param left
-	 * @param right
-	 * @param leftListen
-	 * @param rightListen
-	 * @return Success or failure
-	 */
-	protected boolean showCustomBar(String title, String subTitle, String left,
-									String right, View.OnClickListener leftListen,
-									View.OnClickListener rightListen) {
-		return showCustomBar(title, subTitle, left, right, 0, 0, leftListen,
-				rightListen);
-	}
 
 	/****************************************************************
 	 * Sound related
@@ -952,6 +822,8 @@ public class BaseActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);//key code
+
+
 		dataBaseHelper=new DataBaseHelper(BaseActivity.this);
 	}
 
@@ -1310,6 +1182,8 @@ public class BaseActivity extends AppCompatActivity {
 
 					idString = utf8 ;
 
+					if(idString.substring(0,1).equals("0"))
+						idString = idString.substring(1);
 					sendMessage(MSG_RESULT_BEEP, null);
 					sendMessage(MSG_RESULT_BC, idString);
 
@@ -1341,4 +1215,42 @@ public class BaseActivity extends AppCompatActivity {
 		}
 
 	}
+
+	public void BindToolBar()
+	{
+		actionBarLeft = findViewById(R.id.actionBarLeft);
+		actionBarRight = findViewById(R.id.actionBarRight);
+		actionBarTitle = findViewById(R.id.actionBarTitle);
+		actionBarSubTitle = findViewById(R.id.actionBarSubTitle);
+
+	}
+
+	public void SetToolBar(String title, String subTitle, String left,
+							String right, int left_icon, int right_icon,
+							View.OnClickListener leftListen, View.OnClickListener rightListen)
+	{
+		actionBarLeft.setText("");
+		actionBarRight.setText(right);
+
+		actionBarTitle.setText(title);
+		actionBarSubTitle.setText(subTitle);
+
+		actionBarLeft.setOnClickListener(leftListen);
+		actionBarRight.setOnClickListener(rightListen);
+
+		if (left_icon > 0) {
+			Drawable drawable = getResources().getDrawable(left_icon);
+			drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+					drawable.getMinimumHeight());
+			actionBarLeft.setCompoundDrawables(drawable, null, null, null);
+		}
+		if (right_icon > 0) {
+			Drawable drawable = getResources().getDrawable(right_icon);
+			drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+					drawable.getMinimumHeight());
+			actionBarRight.setCompoundDrawables(drawable, null, null, null);
+		}
+
+	}
+
 }

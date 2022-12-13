@@ -168,10 +168,14 @@ public class MasterConfigActivity extends UHFBaseActivity implements
 		} catch (Exception ex) {
 			Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 		}
-
-		showCustomBar(getString(R.string.btn_UHFMenu_Configration),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
+		BindToolBar();
+		SetToolBar(
+				getString(R.string.MasterConfig),
+				"_Operario.getDescripcion()",
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {

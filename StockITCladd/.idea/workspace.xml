@@ -19,15 +19,52 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/ConfigActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/ConfigActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/ItemMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/ItemMainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/MasterConfigActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/MasterConfigActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/Estado4Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/Estado4Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/FinderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/FinderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/FinderBaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/FinderBaseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/GrabarContenedorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/GrabarContenedorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/GrabarPiezaActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/GrabarPiezaActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/InventarioActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/InventarioActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/PopUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/PopUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/TrackeoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/TrackeoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/VerDetallePiezaActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/VerDetallePiezaActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/VerificacionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/VerificacionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/premodulo/VerDetalleContenedorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/premodulo/VerDetalleContenedorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/services/DataBaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/services/DataBaseHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/services/UpdateAppService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/services/UpdateAppService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/cladd/uhf/UHFBaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/cladd/uhf/UHFBaseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/util/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/util/BaseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_action_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_action_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/epclist_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/epclist_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/estado4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/estado4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/finder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/finder.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/finder_base.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/finder_base.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/grabarcontenedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/grabarcontenedor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/grabarpieza.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/grabarpieza.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/inventario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/inventario.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/trackeo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/trackeo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/uhf_configration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/uhf_configration.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/verdetallepieza.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/verdetallepieza.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/verificacion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/verificacion.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[82003D0020100335]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -58,9 +95,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="1ftVaxlVemGnzc9MR2Xln0l2n0y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -77,7 +111,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewC:/Users/lania/AppData/Local/Android/Sdk/sources/android-33/android/view/ViewGroup.java_SELECTED" value="ViewGroup" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../templates/android/PDAExample/PDAExample" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -90,11 +124,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lania\Desktop\Proyectos\Cladd\cladd-pda-new\StockITCladd\app\src\main\res\layout" />
       <recent name="C:\Users\lania\Desktop\Proyectos\Cladd\cladd-pda-new\StockITCladd\app\src\main\res\drawable" />
       <recent name="C:\Users\lania\Desktop\Proyectos\Cladd\cladd-pda-new\StockITCladd\app\src\main\java\com\cladd\services" />
       <recent name="C:\Users\lania\Desktop\cladd-pda-new\StockITCladd\app\src\main\java\com\cladd\entities\model" />
       <recent name="C:\Users\lania\Desktop\cladd-pda-new\StockITCladd\app\src\main\res\layout" />
-      <recent name="C:\Users\lania\Desktop\cladd-pda-new\StockITCladd\app\src\main\java\com\cladd\premodulo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\lania\Desktop\Proyectos\Cladd\cladd-pda-new\StockITCladd\app" />
@@ -209,9 +243,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/cladd/services/UpdateAppService.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="87" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/cladd/modulos/FinderActivity.java</url>
+          <line>266</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

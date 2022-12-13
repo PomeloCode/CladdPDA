@@ -78,7 +78,7 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 
 	private View v_GrabarPieza_LupaSector = null;
 	private TextView tb_Write_MatchTID = null;
-	private TextView tv_UsuarioLogueado = null;
+
 	private EditText tb_Write_WriteNSerie = null;
 	private TextView tb_Write_Sector = null;
 	private RadioButton rb_WriteBcToRf_Escanear = null;
@@ -133,7 +133,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.GrabarPieza));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
@@ -144,32 +143,22 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 	protected void onResume(){
 		super.onResume();
 
+		StopReading();
+
+
 	}
 
 	protected void InitView() {
 
 		this.setContentView(R.layout.grabarpieza);
 
-
-		showCustomBar(getString(R.string.tv_GrabarPieza_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back(v);
-					}
-				},
-				null
-		);
-
 		BindViews();
 	}
 
 	protected void BindViews(){
 
-		// campo para escanear Sector
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+		BindToolBar();
+
 		 // campo para escanear Sector
 		tb_Write_Sector = findViewById(R.id.tb_Write_Sector);
 		 // campo para Leer tag a grabar
@@ -203,7 +192,21 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 	}
 
 	protected void DisplayData() {
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
+		SetToolBar(
+				getString(R.string.tv_GrabarPieza_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 		v_GrabarPieza_LupaSector.setBackground(getDrawable(R.drawable.lupa));
 		tipo = getString(R.string.PUNTO);
 
@@ -338,21 +341,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 
 		if (controlText.equals(getString(R.string.btn_GrabarPieza_Grabar))) {
 			StartReading();
-
-			new Thread() {
-				@Override
-				public void run() {
-					new Timer().schedule(
-							new TimerTask() {
-								@Override
-								public void run() {
-									StopReading();
-								}
-							},
-							2000
-					);
-				}
-			}.start();
 		}
 		else
 			StopReading();
@@ -460,8 +448,13 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 					toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP);
 					if (tb_Write_Sector.getText().equals(new String()))
 						sendMessage(MSG_RESULT_SECTOR, idString);
-					else
+					else{
+						if(idString.substring(0,1).equals("0"))
+							idString = idString.substring(1);
+
 						sendMessage(MSG_RESULT_BC, idString);
+
+					}
 
 				} else {
 
@@ -793,36 +786,6 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		});
 	}
 
-	public void Clear(View v) {
-		hmList.clear();
-	}
-
-	@Override
-	public void onBackPressed() {
-		Back(null);
-	}
-
-	public void Back(View v) {
-
-		DisposeAll();
-
-		finish();
-
-		GrabarPiezaActivity.this.finish();
-	}
-
-	@Override
-	protected void onDestroy() {
-		DisposeAll();
-		super.onDestroy();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		DisposeAll();
-	}
-
 
 	/**
 	 * End Controller
@@ -870,7 +833,7 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 					try {
 						CLReader.Stop();
 						Thread.sleep(500);
-						UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_MAXPOWER))));
+						UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(getString(R.string.RFID_MAXPOWER)));
 						Thread.sleep(500);
 						CLReader.Stop();
 						Thread.sleep(500);
@@ -909,17 +872,9 @@ public class GrabarPiezaActivity extends UHFBaseActivity implements
 		int ret = -1;
 
 		CLReader.Stop();
-		UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerBCtoRFRead))));
+		UHFReader._Config.SetANTPowerParam(1,Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.LeerTagContenedor)+getString(R.string.DB_DynamicConfig_Name_antPower))));
 
 		ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, _RFIDSingleRead);
-
-		int retval = CLReader.GetReturnData(rt);
-		if (!UHF_CheckReadResult(retval)) {
-			CLReader.Stop();
-			sendMessage(MSG_WRITE_TAG, 1);
-			in_reading = false;
-			return;
-		}
 
 		//After reading the tag for 2 seconds, stop
 		new Thread() {

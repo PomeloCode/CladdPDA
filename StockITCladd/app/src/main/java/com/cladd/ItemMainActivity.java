@@ -211,7 +211,10 @@ public class ItemMainActivity extends BaseActivity {
 					if ("Actualizar".equals(map.get("itemText"))) {
 						UpdateAppService u = new UpdateAppService();
 
-						u.DoUpdate(ItemMainActivity.this, "https://raw.githubusercontent.com/PomeloCode/CladdPDA/main/StockITCladd/");
+						u.DoUpdate(ItemMainActivity.this, dataBaseHelper.getDynamicConfigsData(getString(R.string.DB_DynamicConfig_Name_CheckUpdateAppUrl)));
+
+						activeActivity = false;
+
 						return;
 					}
 					Intent intent = new Intent();
@@ -221,18 +224,6 @@ public class ItemMainActivity extends BaseActivity {
 				}
 			}
 		});
-
-		showCustomBar(getString(R.string.tv_MainMenu_Title),
-				getString(R.string.str_exit), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Exit(v);
-					}
-				},
-				null
-		);
 
 		hideWait();
 
@@ -246,6 +237,8 @@ public class ItemMainActivity extends BaseActivity {
 
 		this.setContentView(R.layout.item_main);
 		gridView = (GridView) findViewById(R.id.main_item_grid);
+		BindToolBar();
+
 		dataBaseHelper = new DataBaseHelper(ItemMainActivity.this);
 		dataBaseHelper.addDynamicConfigsDefault();
 		keepScreenOn(true);
@@ -404,6 +397,7 @@ public class ItemMainActivity extends BaseActivity {
 							GetColoresApi();
 							GetProductosApi();
 							InsertLoginToDatabase(codigoOperario,dataSource);
+
 
 						}
 					}
@@ -604,6 +598,22 @@ public class ItemMainActivity extends BaseActivity {
 		dataBaseHelper.addDynamicConfigs(getString(R.string.DB_DynamicConfig_Type_BaseConfig),getString(R.string.OPERARIODESC), descripcion);
 		dataBaseHelper.addDynamicConfigs(getString(R.string.DB_DynamicConfig_Type_BaseConfig),getString(R.string.OPERARIOPLANTA), planta);
 		dataBaseHelper.addDynamicConfigs(getString(R.string.DB_DynamicConfig_Type_BaseConfig),getString(R.string.OPERARIOUSOTRACKER), habilitaUsoTracker);
+
+		SetToolBar(
+				getString(R.string.app_name),
+				descripcion,
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Exit(v);
+					}
+				},
+				null
+		);
 	}
 
 	/** Inicializa el operario admin para poder operar en la app */

@@ -27,7 +27,7 @@ public class VerDetalleContenedorActivity extends UHFBaseActivity implements
 	/** INICIO Definicion de elementos de la vista **/
 
 	private Button btn_VerDetalle = null;
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView tv_VerDetalle_Tipo = null;
 	private TextView tv_VerDetalle_Pieza = null;
 	private TextView tv_VerDetalle_DepSec = null;

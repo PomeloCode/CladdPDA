@@ -67,7 +67,7 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 
 	/** INICIO Definicion de elementos de la vista **/
 
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView tv_FinderBase_NombreBuscador = null;
 	private RadioGroup rg_FinderBaseCriterio = null;
 	private RadioButton rb_FinderBase_Partida = null;
@@ -93,7 +93,7 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 	/* Logging */
 
 	private static int _FinderType = 0;
-	private int cambioPotAntena = 0;
+
 	private boolean llamo = false;
 	private int asignados = 0;
 
@@ -113,7 +113,6 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.LeerTagContenedor));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
@@ -122,38 +121,23 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 	@Override
 	protected void onResume(){
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
-			}
-		});
+		StopReading();
+
+
 	}
 
 	protected void InitView() {
 
 		this.setContentView(R.layout.finder_base);
 
-
-		showCustomBar(getString(R.string.tv_FinderBase_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back(v);
-					}
-				},
-				null
-		);
-
 		BindViews();
+
 	}
 
 	protected void BindViews() {
 
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+		BindToolBar();
+
 		tv_FinderBase_NombreBuscador = findViewById(R.id.tv_FinderBase_NombreBuscador);
 		rg_FinderBaseCriterio = findViewById(R.id.rg_FinderBaseCriterio);
 		rb_FinderBase_Partida = findViewById(R.id.rb_FinderBase_Partida);
@@ -171,8 +155,21 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 
 	protected void DisplayData() {
 
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
-
+		SetToolBar(
+				getString(R.string.tv_FinderBase_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 		v_FinderBase_BuscadorBtn.setBackground(getDrawable(R.drawable.lupa));
 
 	}
@@ -204,7 +201,8 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 			@Override
 			public void onClick(View view) {
 				if (asignados != 0) {
-					cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerFinderRead))));
+					ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
+
 					RestartViewBuscadorFinder();
 				} else {
 					View currentFocus = getCurrentFocus();
@@ -220,7 +218,7 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 		rg_FinderBaseCriterio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				RestartViewBuscadorFinder();
-				cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerFinderRead))));
+				ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
 				RadioButton rb = findViewById(checkedId);
 
 				if (rb.getText().toString().equals("Partida")) {// Partida
@@ -304,9 +302,7 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 
 			in_reading = true;
 			int ret = -1;
-			if (cambioPotAntena == 0) {
 				ret = UHFReader._Tag6C.GetEPC_TID(_NowAntennaNo, _RFIDSingleRead);
-			}
 		}
 	}
 
@@ -410,7 +406,6 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 								asignados = asignados + PiezaList.size();
 							}
 							containerGlobal.setProductos(listaDepositos);
-							cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerFinderSearch))));
 							Thread.sleep(20);
 
 							tv_FinderBase_Asignados.setText(String.valueOf(asignados));
@@ -545,7 +540,7 @@ public class FinderBaseActivity extends UHFBaseActivity implements
 
 				@Override
 				public void run() {
-					btn_FinderBase.setText(getString(R.string.btn_read_stop));
+					btn_FinderBase.setText(getString(R.string.btn_FinderBase_Leer));
 					btn_FinderBase.setClickable(true);
 				}
 			});

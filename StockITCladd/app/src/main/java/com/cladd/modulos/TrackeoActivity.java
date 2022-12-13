@@ -55,6 +55,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,7 +76,7 @@ public class TrackeoActivity extends UHFBaseActivity implements
 	private EditText et_Trackeo_Nro = null;
 	private View v_editContainer = null;
 	private ListView listView = null;
-	private TextView tv_UsuarioLogueado = null;
+
 	private TextView tv_Trackeo_Leidos = null;
 	private TextView tv_Trackeo_Asignados = null;
 	private TextView tv_Trackeo_Cargados = null;
@@ -113,7 +114,6 @@ public class TrackeoActivity extends UHFBaseActivity implements
 	/* Logging */
 
 	private boolean llamo = false;
-	private int cambioPotAntena = 0;
 	private long timerBtnOperacion = 0;
 	private long timerBtnLeer = 0;
 
@@ -134,7 +134,6 @@ public class TrackeoActivity extends UHFBaseActivity implements
 
 
 		InitDBConexion();
-		InitRFIDModule(this,getString(R.string.Trackeo));
 		InitBCModule();
 		InitSoundModule();
 		InitView();
@@ -144,24 +143,8 @@ public class TrackeoActivity extends UHFBaseActivity implements
 	@Override
 	protected void onResume(){
 		super.onResume();
-		showWait("Configurando Antena");
-		Helper_ThreadPool.ThreadPool_StartSingle(new Runnable() {
-			@Override
-			public void run() {
-				ConfigureRFIDModule(getString(R.string.Trackeo));
-			}
-		});
-	}
 
-
-	public void SetAntennaConfigurations(String funcion) {
-
-		SetBaseBand("4", "4", "1", "0", "false", "false");
-		cambioPotAntena = UHFReader._Config.SetANTPowerParam(_NowAntennaNo, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerTrack))));
-
-		if (cambioPotAntena != 0)
-			showMsg(getString(R.string.RFID_ErrorCambioPotencia));
-
+		StopReading();
 
 	}
 
@@ -169,28 +152,17 @@ public class TrackeoActivity extends UHFBaseActivity implements
 
 		this.setContentView(R.layout.trackeo);
 		
-		showCustomBar(getString(R.string.tv_Trackeo_Title),
-				getString(R.string.str_back), null,
-				R.drawable.left, 0,
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Back();
-					}
-				},
-				null
-		);
-
 		BindViews();
 	}
 
 	protected void BindViews() {
+ 		BindToolBar();
 
 		rg_Trackeo = findViewById(R.id.rg_Trackeo);
 		rb_Trackeo_Carga = findViewById(R.id.rb_Trackeo_Carga);
 		rb_Trackeo_Descarga = findViewById(R.id.rb_Trackeo_Descarga);
 		rb_Trackeo_Devolucion = findViewById(R.id.rb_Trackeo_Devolucion);
-		tv_UsuarioLogueado = findViewById(R.id.tv_UsuarioLogueado);
+
 		v_editContainer = findViewById(R.id.v_editContainer);
 		et_Trackeo_Nro = findViewById(R.id.et_Trackeo_Nro);
 		listView = findViewById(R.id.lv_Main);
@@ -210,8 +182,21 @@ public class TrackeoActivity extends UHFBaseActivity implements
 
 	protected void DisplayData() {
 
-		tv_UsuarioLogueado.setText(_Operario.getDescripcion());
-
+		SetToolBar(
+				getString(R.string.tv_Trackeo_Title),
+				_Operario.getDescripcion(),
+				getString(R.string.str_back),
+				new String(),
+				R.drawable.left,
+				0,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Back(v);
+					}
+				},
+				null
+		);
 		v_editContainer.setBackground(getDrawable(R.drawable.lupa));
 
 	}
@@ -250,7 +235,7 @@ public class TrackeoActivity extends UHFBaseActivity implements
 			@Override
 			public void onClick(View view) {
 				if (Asignados != 0) {
-					cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerRead))));
+					ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
 					RestartTrackeo();
 				} else {
 					View currentFocus = getCurrentFocus();
@@ -267,7 +252,7 @@ public class TrackeoActivity extends UHFBaseActivity implements
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// checkedId is the RadioButton selected
 				RadioButton rb = findViewById(checkedId);
-				cambioPotAntena = UHFReader._Config.SetANTPowerParam(1, Integer.parseInt(dataBaseHelper.getDynamicConfigsData(getString(R.string.RFID_AntPowerTrackerRead))));
+				ConfigureRFIDModule(getString(R.string.LeerTagContenedor));
 				RestartTrackeo();
 
 				btn_Trackeo_Operacion.setText(rb.getText().toString());
@@ -350,9 +335,7 @@ public class TrackeoActivity extends UHFBaseActivity implements
 
 			in_reading = true;
 			int ret = -1;
-			if (cambioPotAntena == 0) {
 				ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, _RFIDSingleRead);
-			}
 
 			int retval = CLReader.GetReturnData(new String());
 			if (!UHF_CheckReadResult(retval)) {
@@ -451,7 +434,7 @@ public class TrackeoActivity extends UHFBaseActivity implements
 					// pieza que no esta asignada
 					if (!model._EPC.substring(0, 4).equals(getString(R.string.RFID_VirginStartTag)))
 						if (model._EPC.substring(2, 4).equals(getString(R.string.StockITBusinessID)))
-							ShowPopupErrorTrackeo(model._EPC);
+							ShowPopupErrorNoAsignada(model._EPC);
 				}
 			}
 		}
@@ -511,7 +494,7 @@ public class TrackeoActivity extends UHFBaseActivity implements
 
 								FillContainerGlobal(Numero,piezas,hexList,hexListCargados);
 
-								SetAntennaConfigurations(getString(R.string.tv_Trackeo_Title));
+								ConfigureRFIDModule(getString(R.string.tv_Trackeo_Title));
 
 								MostrarDatosDeLaAPI();
 
@@ -784,9 +767,11 @@ public class TrackeoActivity extends UHFBaseActivity implements
 			});
 	}
 
-	public void ShowPopupErrorTrackeo(String tag) {
+	public void ShowPopupErrorNoAsignada (String tag) {
 		Intent popup = new Intent(TrackeoActivity.this, PopUpActivity.class);
 		popup.putExtra(getString(R.string.tv_PopUpError_pieza), tag);
+		String titulo = getString(R.string.tv_PopUpError_TitleNoAsignada);
+		popup.putExtra(getString(R.string.tv_PopUpError_TipoError), getString(R.string.tv_PopUpError_TitleNoAsignada));
 		startActivity(popup);
 	}
 
